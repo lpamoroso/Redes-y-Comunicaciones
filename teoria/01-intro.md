@@ -118,4 +118,13 @@ Según topología física:
 
 Es una red de redes de computadoras, descentralizada, pública, que ejecutan el conjunto abierto de protocolos(suite) TCP/IP. Integra diferentes protocolos de un nivel más bajo.
 
-11. 
+11. ¿Cómo se estructura internet?
+
+Es una estructura jerárquica, en forma de niveles:
+* Capa de acceso: contempla cómo se entra a internet.
+* Capa de núcleo: consta de dispositivos de red de alta velocidad fundamentales para la interconectividad entre los aparatos de la capa de acceso. 
+
+12. ¿Qué son los RFC?
+
+Los RFC(*request for comments*) son una serie de publicaciones del grupo de trabajo de ingeniería de internet que describen diversos aspectos del funcionamiento de Internet y otras redes de computadoras, como protocolos, procedimientos, etc. y comentarios e ideas sobre estos. Cada RFC constituye un monográfico o memorando que ingenieros o expertos en la materia han hecho llegar al IETF, el consorcio de colaboración técnica más importante en Internet, para que éste sea valorado por el resto de la comunidad.
+
