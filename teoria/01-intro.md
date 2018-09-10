@@ -97,25 +97,34 @@ Existen diferentes clasiﬁcaciones de acuerdo a diferentes aspectos. Se pueden 
 * Etc.
 
 Según cobertura:
-* LAN: (Local Area Network). Red de cobertura local. Ethernet, Wi-Fi.
-* MAN: (Metropolitan Area Network). red de cobertura metropolitana, dentro de una ciudad. MetroEthernet, MPLS, Wi-Max.
-* WAN: (Wide Area Network). red de cobertura de área amplia. Geográﬁcamente distribuida. PPP, Frame-Relay, MPLS, HDLC, SONET/SDH.
-* SAN: (Storage Area Network). red de almacenamiento. iSCSI, Fibre Channel, ESCON.
-* PAN: red de cobertura personal. Red con alcance de escasos metros para conectar dispositivos cercanos a un individuo. Bluetooth, IrDA, USB.
+* **LAN**: (Local Area Network). Red de cobertura local. Ethernet, Wi-Fi.
+* **MAN**: (Metropolitan Area Network). red de cobertura metropolitana, dentro de una ciudad. MetroEthernet, MPLS, Wi-Max.
+* **WAN**: (Wide Area Network). red de cobertura de área amplia. Geográﬁcamente distribuida. PPP, Frame-Relay, MPLS, HDLC, SONET/SDH.
+* **SAN**: (Storage Area Network). red de almacenamiento. iSCSI, Fibre Channel, ESCON.
+* **PAN**: red de cobertura personal. Red con alcance de escasos metros para conectar dispositivos cercanos a un individuo. Bluetooth, IrDA, USB.
 
 Según acceso:
-* Internet: es una red pública global que utiliza la tecnología TCP/IP.
-* Intranet: es una red privada que utiliza la tecnología de Internet.
-* Extranet: es una red privada virtualizada sobre enlaces WAN: Internet. Es una intranet con acceso de usuarios remotos. VPN (Virtual Private Network). IPSec, PPTP, SSL, OpenVPN. Una intranet mapeada sobre una red pública como Internet.
+* **Internet**: es una red pública global que utiliza la tecnología TCP/IP.
+* **Intranet**: es una red privada que utiliza la tecnología de Internet.
+* **Extranet**: es una red privada virtualizada sobre enlaces WAN: Internet. Es una intranet con acceso de usuarios remotos. VPN (Virtual Private Network). IPSec, PPTP, SSL, OpenVPN. Una intranet mapeada sobre una red pública como Internet.
 
 Según topología física:
-* Redes de Conmutación de Circuitos.
-* Redes de Conmutación de Tramas/Paquetes. 
-  + Servicios Orientados a Conexión. Circuitos Virtuales. Acá se establece el camino que va a seguir el paquete.
-  + Servicios NO Orientados a Conexión. Datagramas. Acá NO se establece el camino que va a seguir el paquete.
+* **Redes de Conmutación de Circuitos**: para establecer comunicación en este tipo de redes, se debe efectuar una llamada y, cuando se establece la conexión, los usuarios disponen de un enlace directo a través de los distintos segmentos de la red.
+* **Redes de Conmutación de Tramas/Paquetes**: en este caso, la información/datos a transmitir es previamente ensamblada en paquetes. Cada paquete es entonces transmitido individualmente y éste puede seguir diferentes rutas hacia su destino. Una vez que los paquetes hayan llegado a su destino, éstos son otra vez reensamblados. La principal diferencia está en que la conmutación por circuitos es un tipo de comunicación que establece o crea un canal dedicado(o circuito) durante la duración de una sesión. Este sistema es ideal para comunicaciones que requieren que los datos/información sean transmitidos en tiempo real. La conmutación de paquetes, por su parte, es más eficiente y robusto para datos que pueden ser enviados con retardo en la transmisión(no en tiempo real), tales como el correo electrónico, páginas web, archivos, etc. Hay dos tipos:
+  + **Servicios Orientados a Conexión**: acá se establece el camino que va a seguir el paquete. Ej: circuitos virtuales.
+  + **Servicios NO Orientados a Conexión**: acá NO se establece el camino que va a seguir el paquete. Ej: datagramas.
   
 10. ¿Qué es internet?
 
 Es una red de redes de computadoras, descentralizada, pública, que ejecutan el conjunto abierto de protocolos(suite) TCP/IP. Integra diferentes protocolos de un nivel más bajo.
 
-11. 
+11. ¿Cómo se estructura internet?
+
+Es una estructura jerárquica, en forma de niveles:
+* **Capa de acceso**: contempla cómo se entra a internet.
+* **Capa de núcleo**: consta de dispositivos de red de alta velocidad fundamentales para la interconectividad entre los aparatos de la capa de acceso. 
+
+12. ¿Qué son los RFC?
+
+Los RFC(*request for comments*) son una serie de publicaciones del grupo de trabajo de ingeniería de internet que describen diversos aspectos del funcionamiento de Internet y otras redes de computadoras, como protocolos, procedimientos, etc. y comentarios e ideas sobre estos. Cada RFC constituye un monográfico o memorando que ingenieros o expertos en la materia han hecho llegar al IETF, el consorcio de colaboración técnica más importante en Internet, para que éste sea valorado por el resto de la comunidad.
+
