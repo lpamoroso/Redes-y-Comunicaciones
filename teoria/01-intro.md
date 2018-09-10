@@ -13,8 +13,8 @@ Es un conjunto de dispositivos interconectados por cable o de forma inalámbrica
 * **Receptor(Hardware)**: un dispositivo(como podría ser una computadora o una impresora) en la que habrá un programa(destino) que entenderá qué es lo que el emisor le está pidiendo e intentará resolverlo. Si bien el receptor es una pieza de hardware, es necesario que el destino sea software ya que éste debe entender lo que el emisor requiere.
 * Otros:
   + **Protocolos(Software)**: el lenguaje en común que hablan el emisor y el receptor.
-  + Información: lo que el emisor pide al receptor y aquello que el receptor envía al emisor. Hay diversas formas de enviarla: por cable de cobre, por fibra óptica, etc.
-  + mensaje transmitido(Software). 
+  + **Información**: lo que el emisor pide al receptor y aquello que el receptor envía al emisor. Hay diversas formas de enviarla: por cable de cobre, por fibra óptica, etc.
+  + mensaje transmitido(Software).
 * Señal de Información, materialización del mensaje sobre el medio(Hardware?).
 
 3. ¿Qué es un protocolo?
@@ -89,11 +89,11 @@ La idea es que cada capa usa el servicio de la de abajo y que cada capa se comun
 
 10. ¿Cómo se clasifican las redes?
 
-Existen diferentes clasiﬁcaciones de acuerdo a diferentes aspectos. Se pueden mencionar: 
+Existen diferentes clasiﬁcaciones de acuerdo a diferentes aspectos. Se pueden mencionar:
 * Por cobertura.
 * Por acceso.
 * Por topología física.
-* Por tipo de conexión/medio. 
+* Por tipo de conexión/medio.
 * Etc.
 
 Según cobertura:
@@ -113,7 +113,7 @@ Según topología física:
 * **Redes de Conmutación de Tramas/Paquetes**: en este caso, la información/datos a transmitir es previamente ensamblada en paquetes. Cada paquete es entonces transmitido individualmente y éste puede seguir diferentes rutas hacia su destino. Una vez que los paquetes hayan llegado a su destino, éstos son otra vez reensamblados. La principal diferencia está en que la conmutación por circuitos es un tipo de comunicación que establece o crea un canal dedicado(o circuito) durante la duración de una sesión. Este sistema es ideal para comunicaciones que requieren que los datos/información sean transmitidos en tiempo real. La conmutación de paquetes, por su parte, es más eficiente y robusto para datos que pueden ser enviados con retardo en la transmisión(no en tiempo real), tales como el correo electrónico, páginas web, archivos, etc. Hay dos tipos:
   + **Servicios Orientados a Conexión**: acá se establece el camino que va a seguir el paquete. Ej: circuitos virtuales.
   + **Servicios NO Orientados a Conexión**: acá NO se establece el camino que va a seguir el paquete. Ej: datagramas.
-  
+
 10. ¿Qué es internet?
 
 Es una red de redes de computadoras, descentralizada, pública, que ejecutan el conjunto abierto de protocolos(suite) TCP/IP. Integra diferentes protocolos de un nivel más bajo.
@@ -122,9 +122,8 @@ Es una red de redes de computadoras, descentralizada, pública, que ejecutan el 
 
 Es una estructura jerárquica, en forma de niveles:
 * **Capa de acceso**: contempla cómo se entra a internet.
-* **Capa de núcleo**: consta de dispositivos de red de alta velocidad fundamentales para la interconectividad entre los aparatos de la capa de acceso. 
+* **Capa de núcleo**: consta de dispositivos de red de alta velocidad fundamentales para la interconectividad entre los aparatos de la capa de acceso.
 
 12. ¿Qué son los RFC?
 
 Los RFC(*request for comments*) son una serie de publicaciones del grupo de trabajo de ingeniería de internet que describen diversos aspectos del funcionamiento de Internet y otras redes de computadoras, como protocolos, procedimientos, etc. y comentarios e ideas sobre estos. Cada RFC constituye un monográfico o memorando que ingenieros o expertos en la materia han hecho llegar al IETF, el consorcio de colaboración técnica más importante en Internet, para que éste sea valorado por el resto de la comunidad.
-
