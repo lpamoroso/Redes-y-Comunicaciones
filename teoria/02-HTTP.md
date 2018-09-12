@@ -38,7 +38,7 @@ Es un esquema *cliente/servidor request/response stateless*, es decir, el servid
 
   |Comando|Uso|
   |:---:|:---:|
-  |**GET**|obtiene el documento requerido. Puede enviar informacion por la URL, pero no demasiada. Su formato es ``` ?var1=val1&var2=val2...```. Su tamaño se limita de acuerdo a las implementación.|
+  |**GET**|obtiene el documento requerido. Puede enviar informacion por la URL, pero no demasiada. Su formato es `?var1=val1&var2=val2...`. Su tamaño se limita de acuerdo a las implementación.|
   |**HEAD**|idéntico a GET, pero sólo pide la meta información del documento, por ejemplo, su tamaño. Es usado por clientes con caché.|
   |**POST**|hace un requerimiento de un documento, perotambién envía información en el body. Generalmente es usado en el fill-in de un formulario HTML. Puede enviar mucha más información que un GET.|
   |**PUT**|es usado para reemplazar un documento en el servidor. En general, este comando se encuentra deshabilitado. Es utilizado, por ejemplo, por protocolos montados sobre HTTP, como WebDAV.|
@@ -67,7 +67,7 @@ Cuando una URL/URI es reemplazada permanentemente por otra URL/URI se debería u
 
 4. Más cosas locas de HTTP: CGI scripts
 
-Una CGI es una aplicación que interactúa con un servidor web para obtener información de los requerimiento generados por el cliente y así poder responder. Existe un estándar del W3C para las CGIs. De esta manera, se le agrega cierto dinamismo a los sitios que trabajan en la *www*. Las CGIs leen de STDIN (POST) o de variables de entorno ```QUERY_STRING``` los datos del usuario y escriben en la STDOUT response.
+Una CGI es una aplicación que interactúa con un servidor web para obtener información de los requerimiento generados por el cliente y así poder responder. Existe un estándar del W3C para las CGIs. De esta manera, se le agrega cierto dinamismo a los sitios que trabajan en la *www*. Las CGIs leen de STDIN (POST) o de variables de entorno `QUERY_STRING` los datos del usuario y escriben en la STDOUT response.
 Estos métodos están definidos en el estándar del W3C: CGI 1.1. Todo el procesamiento de CGI es realizado del lado del servidor: server-side, el cliente solo genera los datos y los envía para que luego sean procesados. Los programas CGI mayormente se los relaciona con código binario, compilado previamente, aunque los ejemplos mostrados son sobre lenguajes de script. La evolución de los CGI ha dado nuevos lenguajes de scripting que ejecutan del lado del servidor, interpretando y/o compilando al vuelo los programas a ejecutar, interactuando como CGI o módulo binario con el servidor web. Un caso es PHP(PHP Hypertext Pre-processor), dise ̃nado originalmente a partir de Perl para generar contenido web de forma dinámica.
 
 5. Client-Side Script: JavaScript
@@ -84,7 +84,7 @@ Es un mecanismo que permite a las aplicaciones web desde el servidor(como CGIs o
 
 El servidor cuando retorna un recurso(un objeto HTTP, como una página HTML) puede solicitar al cliente que almacene de forma temporal información de estado. Este estado es almacenado en el cliente y asociado con una fecha de expiración. Las cookies se almacenan por site y puede haber varias por cada uno.
 Mediante este agregado se provee a un protocolo sin estados la posibilidad de simularlos permitiendo generar aplicaciones web más complejas, por ejemplo aplicaciones de venta on-line, manejo de autenticación y preferencias de usuarios.
-Una Cookie es introducida al cliente mediante el mensaje en el header ```Set-Cookie: (nombre,valor)``` de una respuesta HTTP, en donde *nombre* representa el nombre de la cookie y *valor*, su identificador. El cliente, en cada requerimiento, luego de haber almacenado la Cookie se la enviará al servidor con el header ```Cookie:```, pudiendo el servidor utilizarla o no o borrarla. Esta información puede ser usada por client-side scripts.
+Una Cookie es introducida al cliente mediante el mensaje en el header `Set-Cookie: (nombre,valor)` de una respuesta HTTP, en donde *nombre* representa el nombre de la cookie y *valor*, su identificador. El cliente, en cada requerimiento, luego de haber almacenado la Cookie se la enviará al servidor con el header `Cookie:`, pudiendo el servidor utilizarla o no o borrarla. Esta información puede ser usada por client-side scripts.
 
 5. ¿Qué es el HTTPS?
 
