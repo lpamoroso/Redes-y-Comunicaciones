@@ -76,4 +76,5 @@ De acuerdo a éstas características es que hay dos tipos de servicios de transp
     - Control de retardo
     - Garantía de tasa de transferencia
     - Seguridad
-• ¿Por qué proveer servicios UDP? Su uso principal es para protocolos en los que el intercambio de paquetes de la conexión/desconexión son mayores, o no son rentables con respecto a la información transmitida, así como para la transmisión de audio y vídeo en real, donde no es posible realizar retransmisiones por los estrictos requisitos de retardo que se tiene en estos casos. 
+    
+* ¿Por qué proveer servicios UDP cuando podría usar TCP en todos los casos? Si bien TCP tiene muchas ventajas, debe asegurar que no se pierdan datos en el trayecto y acomodarse a lo que el usuario pueda manejar. Esto lo hace lento y complejo. El uso principal de UDP, por lo tanto, es para protocolos en los que no sea rentable usar TCP por la lentitud y complejidad que este pudiera generar. Un ejemplo es el streaming de videos o audio: es tolerable que se pierdan algunos paquetes dado que no afectará mucho al producto final; sin embargo, no es deseable que llegue una parte del correo electrónico y otra no porque se pierda en el trayecto.
