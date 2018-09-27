@@ -51,12 +51,10 @@ En principio, es necesario definirle ciertas primitivas:
 1. ¿Qué consideraciones debo tener?
 
 * Maneja conexiones HTTP de a una(un solo thread).
-* Acepta la conexión
-* Procesa el cabezal
-* Obtiene el archivo pedido del disco
-* Crea el mensaje de respuesta
-  + Cabezal y archivo
-* Envía respuesta al cliente
-•si el protocolo HTTP se respeta,
- este servidor podrá ser invocado desde un browser (IE,
- Firefox
+* Acepta la conexión.
+* Procesa el cabezal.
+* Obtiene el archivo pedido del disco.
+* Crea el mensaje de respuesta.
+  + Cabezal y archivo.
+* Envía respuesta al cliente.
+* Si el protocolo HTTP se respeta, este servidor podrá ser invocado desde un browser(IE, Firefox).
