@@ -2,22 +2,33 @@
 
 1. ¿Qué es HTTP?
 
-Es un protocolo de comunicación que permite las transferencias de información en la World Wide Web. Últimamente está siendo reemplazado por **HTTPS** dado que es un protocolo más seguro(la *s* es de *secure*).
+Es un protocolo de aplicación de la Web que permite las transferencias de información en la World Wide Web. Últimamente está siendo reemplazado por **HTTPS** dado que es un protocolo más seguro(la *s* es de *secure*).
 
 2. ¿Cómo funciona HTTP?
 
-Es un esquema *cliente/servidor request/response stateless*, es decir, el servidor no guarda ningún dato de quién le preguntó. El protocolo corre sobre TCP porque requiere un protocolo de transporte confiable. El cliente puede escoger cualquier puerto(siempre y cuando no sea privilegiado) mayor a 1024. Existen 16 bits para formar ese puerto. También trabaja sobre texto ASCII, permitiendo enviar informacion binaria con encabezados MIME. En este modelo, representamos el cliente como un navegador y el servidor como el *software* que atiende las peticiones de los clientes.
+Es un esquema *cliente/servidor request/response stateless*, es decir, el servidor no mantiene información sobre los pedidos hechos, simplemente responde a cada pedido independientemente. Si el protocolo fuera con estado, aumentaría la complejidad dado que debería mantenerse información sobre los pedidos; además, si se interrumpiera el procesamiento en cliente o servidor, el estado podría quedar inconsistente y esto debería ser solucionado.
+El protocolo corre sobre TCP porque requiere un protocolo de transporte confiable. El cliente inicia una conexión TCP(crea el socket) al servidor, en el puerto 80. El servidor acepta una conexión TCP del cliente. Mensajes HTTP son intercambiados entre cliente y servidor. Se cierra la conexión TCP.
+El cliente puede escoger cualquier puerto(siempre y cuando no sea privilegiado) mayor a 1024. Existen 16 bits para formar ese puerto. También trabaja sobre texto ASCII, permitiendo enviar informacion binaria con encabezados MIME. En este modelo, representamos el cliente como un navegador y el servidor como el *software* que atiende las peticiones de los clientes.
+Su funcionamiento puede ser persistente o no. Si no es persistente:
+
+|Cliente|Servidor|
+|:---:|:---:|
+|Cliente inicia conexión TCP.||
+||Servidor HTTP espera conexión en puerto 80.|
+|Cliente envía pedido HTTP por el socket TCP. El mensaje indica que quiere obtener la página Web.||
+||Servidor HTTP recibe el pedido y genera un mensaje de respuesta que contiene el objeto pedido.|
+|Cliente HTTP recibe la respuesta con el mensaje conteniendo la página HTML que referencia 10 imágenes.||
+|Se repiten todos los pasos para las 10 imágenes||
+||El servidor HTTP cierra la conexión TCP|
+
+Todo lo anterior provoca la sobrecarga del sistema y red por conexiones TCP extras por lo que los navegadores suelen abrir conexiones paralelas para obtener objetos referenciados.
+Si fuera persistente el servidor deja la conexión abierta luego de enviar la respuesta, lo cual ahorra las conexiones TCP extras. Los mensajes subsecuentes entre el mismo cliente/servidor son enviados por la misma conexión abierta. El cliente envía pedidos cuando encuentra objetos referenciados.
 
 3. Versiones de HTTP
 
-* **HTTP 0.9**: La primera version de HTTP fue la 0.9 y nunca fue estandarizada. Define un protocolo del tipo Request/Response muy sencillo. Solo contiene un método o comando: el GET. Los pasos para obtener un documento son:
-  1. Establecer la conexión TCP.
-  2. HTTP Request vía comando GET.
-  3. HTTP Response enviando la página requerida.
-  4. Cerrar la conexión TCP por parte del servidor.
-
-  Solo existía una forma de hacer el requerimiento y también una única forma de responder. El cliente se conectaba al puerto 80, puerto default de HTTP, aunque bien podría utilizar otro.
-  Cuando el servidor retornaba el contenido de la página solicitada, cerraba la conexión TCP. Si el documento requerido no existía, el servidor no enviaba nada y solo cerraba la conexión. En tal caso, al cliente no se le mostraba nada. No existía la posibilidad de enviar mucha información del cliente al servidor solo vía el comando GET. No existían códigos que distinguiesen errores de respuestas correctas.
+* **HTTP 0.9**: La primera version de HTTP fue la 0.9 y nunca fue estandarizada. Define un protocolo del tipo Request/Response muy sencillo. Solo contiene un método o comando: el GET.
+Solo existía una forma de hacer el requerimiento y también una única forma de responder. El cliente se conectaba al puerto 80, puerto default de HTTP, aunque bien podría utilizar otro.
+Cuando el servidor retornaba el contenido de la página solicitada, cerraba la conexión TCP. Si el documento requerido no existía, el servidor no enviaba nada y solo cerraba la conexión. En tal caso, al cliente no se le mostraba nada. No existía la posibilidad de enviar mucha información del cliente al servidor solo vía el comando GET. No existían códigos que distinguiesen errores de respuestas correctas. No utiliza persistencia.
 
 * **HTTP 1.0**: ésta versión de HTTP es estándar(está definida en el [RFC-1945]). Define un formato de mensaje para el Request y otro para el Response. Posee las siguientes características:
   + Se debe especificar la versión en el requerimiento del cliente.
@@ -25,14 +36,7 @@ Es un esquema *cliente/servidor request/response stateless*, es decir, el servid
   + Define códigos de respuesta.
   + Admite repertorio de caracteres, además del ASCII, como ISO-8859-1, UTF-8, etc.
   + Admite MIME(Multipurpose Internet Mail Extensions), no solo sirve para descargar HTML e imágenes.
-  + Por default NO utiliza conexiones persistentes.
-
-  Funciona de la siguiente forma:
-  1. La solicitud podría consistir en múltiples campos de encabezado separados por nueva línea.
-  2. El objeto de respuesta tiene un prefijo con una línea de estado de respuesta.
-  3. El objeto de respuesta tiene su propio set de campos de encabezado separados por nueva línea.
-  4. El objeto de respuesta no está limitado a hipertexto.
-  5. La conexión entre el *server* el el cliente es cerrada luego de cada pedido.
+  + Por default, NO utiliza conexiones persistentes.
 
   Los comandos que utiliza HTTP:
 
@@ -92,8 +96,7 @@ Aparte del HTTP convencional, existe otra rama que trabaja sobre una capa de “
 
 6. ¿Qué es la WEB-cache?
 
-Consiste en cachear recursos HTTP. La idea es mejorar el tiempo de respuesta(reducir retardo en descarga), Ahorrar BW( *balance wage*, recursos de la red), atender a todos los clientes, etc.
+Consiste en cachear recursos HTTP. La idea es satisfacer el pedido del cliente sin involucrar el servidor original, lo que mejora el tiempo de respuesta(reduce retardo en descarga), ahorrar BW(*balance wage*, recursos de la red), permite atender a todos los clientes, etc. La configuración se realiza en el navegador(opción *acceso mediante cache*).
 El funcionamiento es el de cualquier cache: se solicita el objeto, si esta en la cache y esta "fresco"(sin manosear) se retorna desde allí(HIT); si el objeto no esta o es viejo se solicita al destino y se cachea(MISS). Se puede realizar control de acceso.
 Del lado del cliente, los web browser tienen sus propias cache locales. Como *servers*, las cache funcionan como proxy. Son servidores a los clientes y clientes a los servidores web. Los instalan ISP(*Internet Service Provider*, Ej: F*bertel) o redes grandes que desean optimizar el uso de los recursos.
-Hay dos protocolos de comunicación entre web-cache servers: ICP(Internet Cache Protocol) y HTCP(Hyper Text Caching Protocol).
-Comunican el router y los web-cache servers. También existe el WCCP(Web Cache Control Protocol). En general todos corren sobre UDP.
+Hay dos protocolos de comunicación entre web-cache servers: ICP(Internet Cache Protocol) y HTCP(Hyper Text Caching Protocol). Comunican el router y los web-cache servers. También existe el WCCP(Web Cache Control Protocol). En general todos corren sobre UDP.
