@@ -1,3 +1,179 @@
+1. Realice el subnetting con los rangos IP disponibles para asignar direcciones IP a las distintas redes del gráfico. Es importante tener en cuenta que tanto las redes de los servidores de DNS, el Web Server y los servidores de Mail deben tener direccionamiento público.
+
+    Dadas las condiciones que el ejecicio plantea, las redes B, C y D deberán tener direccionamiento público. De los bloques de IP disponibles hay solo dos que cumplen esas condiciones: el 20.0.0.0/22 y el 30.0.0.0/28. Por el contrario, tanto 10.0.0.0/8 y 192.168.10.64/26 son rangos de IP privadas de clase A y C, respectivamente.  
+    Volviendo a las IP que cumplen las condiciones, hay una de ellas que no podemos usar dado que no nos permite subnetear la cantidad de host de la red C(la red con más hosts): es la IP 30.0.0.0/28 y es la que descartaremos. Por lo tanto, usaremos la 20.0.0.0/22.  
+    Para empezar, tomaremos 7 bits para representar los host de la red con mayor cantidad de hosts(la red C), por lo que nos quedarán 3 bits para la subred. Esto supone que tengo 8 subredes que pueden representar hasta 128 hosts, descontando 2(el primero, el reservado y el último, el de broadcast), es decir, 126 hosts.
+
+    00010100 00000000 00000000 00000000 IP.  
+    11111111 11111111 11111100 00000000 Máscara actual.  
+    11111111 11111111 111111**11 1**0000000 Máscara nueva.  
+
+    Red C = 20.0.0.0/25.
+    Red B = 20.0.0.128/25.
+    Red A = 20.0.1.0/25.
+    Próximo bloque a subnetear = 20.0.1.128/25.
+
+    Los bits en negrita representan la subred. Tanto la red A como B y C necesitaban 7 bits para representar sus hosts, por lo que se le dio una subred a cada una. Podría darle una subred completa a D que tiene 50 hosts, pero estaría desperdiciando mucho, por lo que voy a recortar un poco la red para ajustarla más a lo que D requiere. La idea es tomar 6 bits para los hosts y el resto que quede como subred, es decir, voy a tener 2 subredes con 64 hosts cada una(62, si descontas el host reservado y el de broadcast).
+
+    00010100 00000000 00000001 10000000 IP.  
+    11111111 11111111 11111111 10000000 Máscara actual.  
+    11111111 11111111 11111111 1**1**000000 Máscara nueva.  
+
+    Red D = 20.0.1.128/26.
+
+    El bit en negrita representa la subred. Ahora hay que asignar IP a los enlaces punto-a-punto. Podría usar esta misma red para hacerlo, pero lo cierto es que conviene dejar esta red exclusivamente para hosts en caso de crecimiento. Para este asunto, conviene usar una red de naturaleza más ajustada, una red como 30.0.0.0/28. Dado que necesito 2 bits para los hosts, los otros 2 bits irán a la subred. Por lo cual tengo 4 subredes para asignar con 4 hosts cada una(2 si descuento el host reservado y el de broadcast).
+
+    00011110 00000000 00000000 00000000 IP.  
+    11111111 11111111 11111111 11110000 Máscara actual.  
+    11111111 11111111 11111111 1111**11**00 Máscara nueva.
+
+    Enlace RA-RB = 30.0.0.0/30.
+    Enlace RB-RD = 30.0.0.4/30.
+    Enlace RA-RC = 30.0.0.8/30.
+    Enlace RC-RD = 30.0.0.12/30.
+
+    Los bits en negrita son los de subred. Ahora toca asignar los hosts.
+
+    Red C = 20.0.0.0/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RouterC = 20.0.0.1/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;PCC = 20.0.0.2/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;mail2.com = 20.0.0.3/25.  
+    Red B = 20.0.0.128/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RouterB = 20.0.0.129/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;mail1.com = 20.0.0.130/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;DNS2 = 20.0.0.131/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;PCD = 20.0.0.132/25.  
+    Red A = 20.0.1.0/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RouterA = 20.0.1.1/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;PCA = 20.0.1.2/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;PCB = 20.0.1.3/25.  
+    Red D = 20.0.1.128/26.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RouterD = 20.0.1.129/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;DNS1 = 20.0.1.130/25.  
+    &nbsp;&nbsp;&nbsp;&nbsp;Web Server = 20.0.1.131/25.  
+    Enlace RA-RB = 30.0.0.0/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RA = 30.0.0.1/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RB = 30.0.0.2/30.
+    Enlace RB-RD = 30.0.0.4/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RB = 30.0.0.5/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RD = 30.0.0.6/30.  
+    Enlace RA-RC = 30.0.0.8/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RA = 30.0.0.9/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RC = 30.0.0.10/30.  
+    Enlace RC-RD = 30.0.0.12/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RC = 30.0.0.13/30.  
+    &nbsp;&nbsp;&nbsp;&nbsp;RD = 30.0.0.14/30.  
+
+2. Suponiendo que existe conectividad entre la PCA y el resto de la topología y que todas las redes con direccionamiento publico tienen conexión a Internet:
+    1. Escriba las tablas de rutas de RA, RB, RC, RD, DNS1, PCA y "Web Server". Elija las direcciones IP que necesite de acuerdo a la asignación del punto anterior.
+
+        ### Tabla de rutas de RA
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.0.128 | 0.0.0.0 | 255.255.255.128 | eth1 |
+        | 20.0.0.0 | 0.0.0.0 | 255.255.255.128 | eth2 |
+        | 20.0.1.128 | 30.0.0.10 | 255.255.255.128 | eth2 |
+        | 30.0.0.0 | 0.0.0.0 | 255.255.255.252 | eth1 |
+        | 30.0.0.4 | 30.0.0.2 | 255.255.255.252 | eth1 |
+        | 30.0.0.8 | 0.0.0.0 | 255.255.255.252 | eth2 |
+        | 30.0.0.12 | 30.0.0.10 | 255.255.255.252 | eth2 |
+        | 220.0.0.0 | 30.0.0.2 | 255.255.255.252 | eth1 |
+        | 0.0.0.0 | 30.0.0.5 | 0.0.0.0 | eth1 |
+
+        ### Tabla de rutas de RB
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.1.0 | 0.0.0.0 | 255.255.255.128 | eth0 |
+        | 20.0.0.0 | 30.0.0.1 | 255.255.255.128 | eth0 |
+        | 20.0.1.128 | 0.0.0.0 | 255.255.255.128 | eth3 |
+        | 30.0.0.0 | 0.0.0.0 | 255.255.255.252 | eth0 |
+        | 30.0.0.4 | 0.0.0.0 | 255.255.255.252 | eth3 |
+        | 30.0.0.8 | 30.0.0.6 | 255.255.255.252 | eth3 |
+        | 30.0.0.12 | 30.0.0.1 | 255.255.255.252 | eth0 |
+        | 220.0.0.0 | 0.0.0.0 | 255.255.255.252 | eth2 |
+        | 0.0.0.0 | 192.10.36.86 | 0.0.0.0 | eth2 |
+
+        ### Tabla de rutas de RC
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.1.0 | 0.0.0.0 | 255.255.255.128 | eth1 |
+        | 20.0.0.128 | 30.0.0.9 | 255.255.255.128 | eth1 |
+        | 20.0.1.128 | 0.0.0.0 | 255.255.255.128 | eth2 |
+        | 30.0.0.0 | 30.0.0.9 | 255.255.255.252 | eth1 |
+        | 30.0.0.4 | 30.0.0.9 | 255.255.255.252 | eth1 |
+        | 30.0.0.8 | 0.0.0.0 | 255.255.255.252 | eth1 |
+        | 30.0.0.12 | 0.0.0.0 | 255.255.255.252 | eth2 |
+        | 220.0.0.0 | 30.0.0.9 | 255.255.255.252 | eth1 |
+        | 0.0.0.0 | 30.0.0.14 | 0.0.0.0 | eth2 |
+
+        ### Tabla de rutas de RD
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.1.0 | 30.0.0.13 | 255.255.255.128 | eth2 |
+        | 20.0.0.128 | 0.0.0.0 | 255.255.255.128 | eth1 |
+        | 20.0.0.0 | 0.0.0.0 | 255.255.255.128 | eth2 |
+        | 30.0.0.0 | 30.0.0.5 | 255.255.255.252 | eth1 |
+        | 30.0.0.4 | 0.0.0.0 | 255.255.255.252 | eth1 |
+        | 30.0.0.8 | 30.0.0.13 | 255.255.255.252 | eth2 |
+        | 30.0.0.12 | 0.0.0.0 | 255.255.255.252 | eth2 |
+        | 220.0.0.0 | 30.0.0.5 | 255.255.255.252 | eth1 |
+        | 0.0.0.0 | 30.0.0.5 | 0.0.0.0 | eth1 |
+
+        ### Tabla de rutas de DNS1
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.1.128 | 0.0.0.0 | 255.255.255.128 | eth0 |
+        | 0.0.0.0 | 20.0.1.129 | 0.0.0.0 | eth0 |
+
+        ### Tabla de rutas de PCA
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.1.0 | 0.0.0.0 | 255.255.255.128 | eth0 |
+        | 0.0.0.0 | 20.0.1.1 | 0.0.0.0 | eth0 |
+
+        ### Tabla de rutas de Web Server
+
+        | Destination | Gateway | Genmask | Iface |
+        |:---:|:---:|:---:|:---:|
+        | 20.0.1.128 | 0.0.0.0 | 255.255.255.128 | eth0 |
+        | 0.0.0.0 | 20.0.1.129 | 0.0.0.0 | eth0 |
+
+    2. Suponga ahora que en el RA se corta el enlace configurado para alcanzar la red D ¿Deben modificarse las tablas de rutas que decribió antes para que el PCA siga llegando a todos los elementos de la topología? Indique los cambios necesarios en las tablas de enrutamiento.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    3. Para evitar la configuración manual de las tablas se utilizan protocolos de enrutamiento dinámicos. Mencione los distintos tipos de algoritmos de enrutamiento. Explique características de los mismos. Mencione al menos una implementación de cada uno.
+
 3. Suponga que PCA y PCB utilizan un cliente pesado de correo electrónico. Desde PCA, el usuario Juan, con cuenta en mail1.com, desea enviar un correo a pedro@mail2.com.
 
     1. Explique cómo se lleva a cabo el envío de mail, explicando detalladamente qué protocolos de aplicación intervienen y cómo los mismos se interrrelacionan.
