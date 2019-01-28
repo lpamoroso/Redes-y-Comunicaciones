@@ -144,35 +144,17 @@
         | 20.0.1.128 | 0.0.0.0 | 255.255.255.128 | eth0 |
         | 0.0.0.0 | 20.0.1.129 | 0.0.0.0 | eth0 |
 
-    2. Suponga ahora que en el RA se corta el enlace configurado para alcanzar la red D ¿Deben modificarse las tablas de rutas que decribió antes para que el PCA siga llegando a todos los elementos de la topología? Indique los cambios necesarios en las tablas de enrutamiento.
+    2. Suponga ahora que en el RA se corta el enlace configurado para alcanzar la red D ¿Deben modificarse las tablas de rutas que describió antes para que el PCA siga llegando a todos los elementos de la topología? Indique los cambios necesarios en las tablas de enrutamiento.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //PREGUNTAR
 
     3. Para evitar la configuración manual de las tablas se utilizan protocolos de enrutamiento dinámicos. Mencione los distintos tipos de algoritmos de enrutamiento. Explique características de los mismos. Mencione al menos una implementación de cada uno.
+
+        Hay 3 tipos de algoritmos de enrutamiento dinamicos: 
+        * Adaptativo centralizado: todos los nodos de la red son iguales excepto un nodo central, que es quien recoge la información de control, y los datos de los demás nodos para calcular con ellos la tabla de enrutamiento. Este método tiene el inconveniente de que consume abundantes recursos de la propia red.
+        * Adaptativo distribuído: en este caso, el algoritmo correspondiente se ejecuta por igual en todos los nodos de la red. Cada nodo recalcula continuamente la tabla de enrutamiento a partir de dicha información y de la que contiene su propia base de datos. Un ejemplo son los algoritmos de vector por distancias en los que un router informa a sus vecinos de los cambios en la topología periódicamente y, en algunos casos, cuando haya un cambio en ésta.
+        * Adaptativo aislado: se caracteriza por la sencillez del métod que utilizan para adaptarse a los cambios. Su respuesta a los cambios de tráfico o de topología se obtiene a partir de la información propia y local de cada nodo. Un caso típico es el enrutamiento *por inundación*, cuyo mecanismo consiste en reenviar cada paquete recibido con destino a otros nodos, por todos los enlaces excepto por el que llegó.
+
 
 3. Suponga que PCA y PCB utilizan un cliente pesado de correo electrónico. Desde PCA, el usuario Juan, con cuenta en mail1.com, desea enviar un correo a pedro@mail2.com.
 
