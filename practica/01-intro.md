@@ -31,12 +31,32 @@ En la red conmutada por circuitos, para establecer comunicación se debe efectua
 En la red conmutada por paquetes, la información/datos a transmitir es previamente ensamblada en paquetes. Cada paquete es entonces transmitido individualmente y éste puede seguir diferentes rutas hacia su destino. Una vez que los paquetes hayan llegado a su destino, éstos son otra vez reensamblados.
 La principal diferencia está en que la conmutación por circuitos es un tipo de comunicación que establece o crea un canal dedicado(o circuito) durante la duración de una sesión. Este sistema es ideal para comunicaciones que requieren que los datos/información sean transmitidos en tiempo real. La conmutación de paquetes, por su parte, es más eficiente y robusto para datos que pueden ser enviados con retardo en la transmisión(no en tiempo real), tales como el correo electrónico, páginas web, archivos, etc.
 
-
-
 8. Analice qué tipo de red es una red de telefonía y qué tipo de red es Internet.
+
+La red de telefonía utiliza conmutación por circuitos e internet utiliza conmutación por paquetes.
+
 9. Describa brevemente las distintas alternativas que conoce para acceder a Internet en su hogar.
+
+Podría acceder via wi-fi o ethernet a través del router brindado por el ISP o utilizando las diferentes tecnologías(4G, 3G, etc) que brinda el internet móvil.
+
 10. ¿Qué ventajas tiene una implementación basada en capas o niveles?
+
+Que cada capa utiliza el servicio de la capa de abajo y se comunica con la capa de arriba.
+
 11. ¿Cómo se llama la PDU de cada una de las siguientes capas: Aplicación, Transporte, Red y Enlace?
-12. ¿Qué es la encapsulación? Si una capa realiza la encapsulación de datos, ¿qué capa del nodo receptor realizará el proceso inverso?
+
+Mensaje, segmento o datagrama(dependiendo si se use TCP o UDP, respectivamente), paquete y trama.
+
+12. ¿Qué es la encapsulación? Si una capa realiza la encapsulación de datos ¿Qué capa del nodo receptor realizará el proceso inverso?
+
+Es un proceso en el cual, a medida que los datos se desplazan a través de las capas del modelo OSI, reciben encabezados, información final y otros tipos de información. La capa superior del nodo receptor será la que desencapsule los datos.
+
 13. Describa cuáles son las funciones de cada una de las capas del stack TCP/IP o protocolo de Internet.
+
+La capa de red física especifica las características del hardware que se utilizará para la red. Por ejemplo, la capa de red física especifica las características del medio de comunicaciones(IEEE 802.3, ethernet y RSD-232).
+La capa de vínculo de datos identifica el tipo de protocolo de red del paquete, en este caso TCP/IP. La capa del vínculo de datos proporciona también control de errores y estructuras. Ejemplos de protocolos de esta capa son el IEEE 802.2 y PPP.
+La capa de internet acepta y transfiere paquetes para la red. Esta capa incluye a IP, ARP e ICMP.
+La capa de transporte TCP/IP garantiza que los paquetes llegan en secuencia y sin errores, al intercambiar la confirmación de la recepción de los datos y retransmitir los paquetes paerdidos. Este tipo de comunicación se conoce como transmisión punto a punto. Los protocolos en este nivel son el protocolo de control de transmisión(TCP), el protocolo de datagramas de usuario(UDP) y el protocolo para el control de flujo(SCTP). Tanto TCP como SCTP proporcionan un servicio completo y fiable. UDP proporciona un servicio de datagrama poco fiable.
+La capa de aplicación define las aplicaciones de red y los servicios de internet estándar que puede utilizar un usuario. Estos servicios utilizan la capa de transporte para enviar y recibir datos. Existen varios protocolos de capa de aplicación: FTP, TFTP, telnet, DNS, HTTP, etc.
+
 14. Compare el modelo OSI con la implementación TCP/IP.
