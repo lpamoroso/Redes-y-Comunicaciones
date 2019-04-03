@@ -1,6 +1,6 @@
 <center><font size="6"><u>Grupo K</u></font></center>
 <center><font size="5"><u>Laboratorio de HTTP</u></font></center>
-<center><font size="4">Gasquez, Federico Ramón 13598/6; Amoroso, Lihuel Pablo 13497/2</font></center>
+<center><font size="4"> Amoroso, Lihuel Pablo 13497/2; Gasquez, Federico Ramón 13598/6</font></center>
 
 1. **Con las premisas dadas en clase, debe resolver**
     1. **Utilizando la herramienta *curl* debe inscribirse en el <a href="http://redes.catedras.linti.unlp.edu.ar/loginregister">sitio</a>. Establezca como *User-Agent* un nombre de grupo que lo identifique. Se recomienda previamente inspeccionar con el navegador las variables a enviar. Cuando la inscripción sea satisfactoria, recibirá un *mail* para confirmar su clave. Ingrese con el *browser*, registre y guarde el *header* de autenticación que le da el sitio.**
