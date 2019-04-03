@@ -5,7 +5,7 @@
 1. **Con las premisas dadas en clase, debe resolver**
     1. **Utilizando la herramienta *curl* debe inscribirse en el <a href="http://redes.catedras.linti.unlp.edu.ar/loginregister">sitio</a>. Establezca como *User-Agent* un nombre de grupo que lo identifique. Se recomienda previamente inspeccionar con el navegador las variables a enviar. Cuando la inscripción sea satisfactoria, recibirá un *mail* para confirmar su clave. Ingrese con el *browser*, registre y guarde el *header* de autenticación que le da el sitio.**
 
-        Se utilizó el comando
+        Se utilizó el comando:
 
         ```
         curl --data "username=fgasquez&email=lihueamoroso@hotmail.com&password=23456789&passwordConfirm=23456789&submit=Registro" -H "User-Agent: GrupoA" -i http://redes.catedras.linti.unlp.edu.ar/loginregister/ >> http_1
