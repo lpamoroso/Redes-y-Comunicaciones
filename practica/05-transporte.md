@@ -63,3 +63,12 @@
 5. La PDU de la capa de transporte es el segmento. Sin embargo, en algunos contextos suele utilizarse el término datagrama. Indique cuándo.
 
     //PREGUNTAR. Se suele hablar de segmento TCP y datagrama UDP, dado el propio nombre de UDP(Used Datagram Protocol).
+
+6. Describa el saludo de tres vías de TCP.
+
+    Par establecer una conexión, TCP utiliza el llamado _three-way handshake_. Antes de que un cliente intente conectarse con un servidor, el servidor debe enlazarse y escuchar por un puerto para abrirlo a futuras conexiones: esto es lo que se denomina apertura pasiva. Una vez establecida la apertura pasiva, un cliente puede iniciar una apertura activa. Para establecer la conexión, the three-way(or three-step) handshake se produce de la siguiente forma:
+    1. SYN: La apertura activa es realizada por el cliente enviando un SYN al servidor. El cliente establece el número de secuencia del segmento a un valor aleatorio, supongamos A.
+    2. SYN-ACK: en respuesta, el servidor responde con SYN-ACK. El número de confirmación es establecido en uno más que el número de secuencia recibido, en este caso, A+1, y el número de secuencia que el servidor elige para el segmento es otro número aleatorio, llamémoslo B.
+    3. ACK: finalmente, el cliente envía un ACK al servidor. El número de secuencia es establecido según el valor de confirmación, en este caso, A+1, y el valor de confirmación es establecido a uno más que el número de secuencia recibido, en nuestro caso, B+1.
+
+    En este punto, tanto el cliente como el servidor han recibido una confirmación de la conexión. Los pasos 1 y 2 establecen el parámetro de conexión(número de secuencia) para uno de los extremos y es confirmado. Los pasos 2 y 3 establecen el parámetro de conexión(número de secuencia) para el otro extremo y es confirmado. Con esto, una comunicación bidireccional completa(full-duplex) es establecida.
