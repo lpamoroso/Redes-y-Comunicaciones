@@ -45,3 +45,7 @@
     * Destination port number(Número de puerto destino): Este campo identifica al puerto del receptor y es requerido. Muy similar a lo que ocurre con el puerto fuente, si el cliente es el host de destino, el número del puerto sea probablemente un número de puerto efímero; y si el host destino es el servidor, el número de puerto sea probablemente uno ya bien conocido.
     * Length(Longitud): Este campo especifica la longitud en bytes del header UDP y la data UDP. La mínima es 8 bytes, la longitud del header. El tamaño teórico del campo es de 65535 bytes(8 bytes de header y 65257 bytes de data) para un datagrama UDP. Sin embargo, el límite actual, el cual es impuesto por el protocolo IPv4 subyaciente es de 65507 bytes(Si son 65535, 8 bytes son de header, y 20 bytes son de header IPv4). Usando jumbograms de IPv6 es posible que los paquetes de UDP sean más grandes que 65535 bytes.
     * Checksum(Suma de verificación): El campo del checksum podría ser utilizado para la comprobación de errores en el header y la data. Este campo es opcional en IPv4 y obligatorio en IPv6. Si no es usado, se llena con zeros.
+
+3. ¿Cuál es el objetivo del uso de puertos en el modelo TCP/IP?
+
+    //PREGUNTAR. El objetivo de los puertos es que en cada uno se aloje un proceso de aplicación. Si no hubieran tantos puertos, no se podrían llevar a cabo tantas conexiones TCP. Cada puerto tiene asignado un socket que es la "puerta" entre la capa de aplicación y transporte.
