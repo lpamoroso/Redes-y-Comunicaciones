@@ -49,3 +49,13 @@
 3. ¿Cuál es el objetivo del uso de puertos en el modelo TCP/IP?
 
     //PREGUNTAR. El objetivo de los puertos es que en cada uno se aloje un proceso de aplicación. Si no hubieran tantos puertos, no se podrían llevar a cabo tantas conexiones TCP. Cada puerto tiene asignado un socket que es la "puerta" entre la capa de aplicación y transporte.
+
+4. Compare TCP y UDP en cuanto a:
+
+| Característica| TCP | UDP |
+| :---: | :---: | :---: |
+| Confiabilidad | TCP ofrece una garantía absoluta de que los segmentos transferidos llegará intactos y en mismo orden en que fueron enviados. | No hay garantía de que los datagramas lleguen. |
+| Multiplexación | Habremos de tener en cuenta la dirección IP de origen y de destino, así como también el puerto de origen y de destino. | Los campos que requeriremos serán los puertos de orgen y destino. |
+| Orientado a la conexión | Orientado | No orientado |
+| Utilización de puertos | Utiliza el concepto de número de puerto para identificar a las aplicaciones emisoras y receptoras. Cada lado de la conexión TCP tiene asociado un número de puerto(de 16 bits sin signo, por lo que existen 65536 puertos posibles) asignado por la aplicación emisora o receptora. Los puertos se clasifican en tres grupos: los bien conocidos, los registrados y los dinámicos. Los puertos bien conocidos son asignados por la IANA, van del 0 al 1023 y son usados normalmente por el sistema o por procesos con privilegios. Las aplicaciones que usan este tipo de puertos son ejecutadas como servidores y se quedan a la escucha de conexiones. Algunos ejemplos son FTP(21), SSH(22) o TELNET(23). Los puertos registrados son normalmente empleados por las aplicaciones de usuario de forma temporal cuando conectan con los servidores, pero también pueden representar servicios que hayan sido registrados por un tercero. Su rango va de 1024 a 49151. Los puertos dinámicos  también pueden ser usados por las aplicaciones de usuario, pero este caso es menos común. Los puertos dinámicos no tienen significado fuera de la conexióon TCP en la que fueron usados. Su rango va de 49152 a 65535.| El campo de puerto tiene una longitud de 16 bits, por lo que el rango de valores válidos va desde 0 a 65535. El puerto 0 está reservado, pero es un valor permitido como puerto origen si el proceso emisor no espera recibir mensajes como respuesta. Los puertos 1 a 1023 son llamados bien conocidos y en sistemas operativos tipo unix enlazar con uno de ellos requiere acceso como superusuario. Los puertos 1024 a 49151 son los puertos registrados.  Los puertos 49152 a 65535 son llamados puertos efímeros y son utilizados como puertos temporales, sobre todo por los clientes al comunicarse con los servidores.|
+| Número de protocolo según IP | 6 | 17 |
