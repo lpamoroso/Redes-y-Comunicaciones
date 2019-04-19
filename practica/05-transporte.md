@@ -76,3 +76,7 @@
 7. Investigue qué es el ISN(Initial Sequence Number). Relaciónelo con el saludo de tres vías.
 
     Es un número de secuencia de 32-bit único asignado a cada nueva conexión en TCP. Ayuda con la asignación de un número de secuencia que no entre en conflicto con otros bytes de datos transmitidos a través de una conexión TCP. Un ISN es único para cada conexión y separado por cada dispositivo.
+
+9. //PREGUNTA QUE HOST USO CON EL HPING3
+
+10. //PREGUNTAR QUE HOST USO CON EL HPING3
