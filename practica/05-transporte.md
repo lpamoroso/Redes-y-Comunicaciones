@@ -72,3 +72,7 @@
     3. ACK: finalmente, el cliente envía un ACK al servidor. El número de secuencia es establecido según el valor de confirmación, en este caso, A+1, y el valor de confirmación es establecido a uno más que el número de secuencia recibido, en nuestro caso, B+1.
 
     En este punto, tanto el cliente como el servidor han recibido una confirmación de la conexión. Los pasos 1 y 2 establecen el parámetro de conexión(número de secuencia) para uno de los extremos y es confirmado. Los pasos 2 y 3 establecen el parámetro de conexión(número de secuencia) para el otro extremo y es confirmado. Con esto, una comunicación bidireccional completa(full-duplex) es establecida.
+
+7. Investigue qué es el ISN(Initial Sequence Number). Relaciónelo con el saludo de tres vías.
+
+    Es un número de secuencia de 32-bit único asignado a cada nueva conexión en TCP. Ayuda con la asignación de un número de secuencia que no entre en conflicto con otros bytes de datos transmitidos a través de una conexión TCP. Un ISN es único para cada conexión y separado por cada dispositivo. 
