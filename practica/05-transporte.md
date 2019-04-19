@@ -7,3 +7,41 @@
     * Segmentación de datos y gestión de cada porción.
     * Reensamble de segmentos en flujos de datos de aplicación.
     * Identificación de las diferentes aplicaciones.
+
+2. Describa la estructura del segmento TCP y UDP.
+
+    ![tcp_segment](images/tcp_segment.jpg)
+
+    * Source port(_puerto fuente_): 16 bits. Identifica al puerto que envía.
+    * Destination port(_puerto destino_): 16 bits. Identifica al puerto que recibe.
+    * Sequence number(_Número de secuencia_): 32 bits. Tiene un rol doble:
+        + Si el flag SYN está seteado(en 1), entonces es el número de secuencia inicial. El número de secuencia del primer byte de datos será el ISN+1 ya que el flag SYN consume un número de secuencia. 
+        + Si el flag SYN está limpio(en 0), entonces es el número de secuencia acumulado del primer byte de data en tal segmento durante la sesión actual.
+    * Acknowledgment number(_Número de acuse de recibo_): 32 bits. Si el flag ACK está seteado entonces el valor de este campo es el siguiente número de secuencia que el emisor del ACK espera. Esto acusa la recepción todos los bytes anteriores(si hubiera alguno). El primer ACK enviado por cada extremo acusa el número de secuencia inicial del otro extremo, pero sin data.  
+    No se pueden acusar partes selectivas del flujo de datos(suponiendo que no estamos usando la opción SACK de acuse selectivo). Por ejemplo, si se reciben correctamente los bytes 1-1024 y el sigueinte segmento contiene los bytes 2049-3072, el receptor no puede acusar la recepción de este último segmento. Lo único que puede hacer es enviar un ACK con 1025 como número de acuse. Procederá del mismo modo si le llegare el segmento 1025-2048 pero con error de checksum.
+    * Data offset(_Longitud de cabecera_): 4 bits. Especifica el tamaño de la cabecera de TCP en palabras de 32 bits. El tamaño mínimo de la cabecera es de 5 palabras y la máxima es de 15, lo que da un tamaño mínimo de 20 bytes y un máximo de 60, permitiendo hasta 40 bytes de opciones en la cabecera.
+    * Reserved(_Reservado_): 3 bits. Para uso futuro, debe estar en 0.
+    * Flags(_AKA bits de control_): 9 bits.
+        + NS(1 bit): ECN-nonce concealment protection. Sirve para proteger frente a paquetes accidentales o maliciosos que se aprovechan del control de congestión para ganar ancho de banda de la red.
+        + CWR(1 bit): Congestion Window Reduced. El flag se activa por el host emisor para indicar que ha recibido un segmento TCP con el flag ECE activado y ha respondido con el mecanismo de control de congestión.
+        + ECE(1 bit): ECN-Echo tiene un rol doble, dependiendo del valor del flag SYN:
+            - Si el flag SYN está seteado, el par TCP tiene capacidad ECN.
+            - Si el flag SYN está limpio, se recibió un paquete con el flag de congestión con experiencia seteado(ECN=11) en el encabezado IP durante la transmisión normal. Esto sirve de indicador de congestión de red(o congestión inminente) al emisor de TCP.
+        + URG(1 bit): indica que el campo del puntero urgente es válido.
+        + ACK(1 bit): indica que el campo de acuse es válido. Todos los paquetes enviados por el cliente después del paquete SYN inicial deben tener activo este flag.
+        + PSH(1 bit): Push. Pide un _push_ de los datos almacenados a la aplicación receptora.
+        + RST(1 bit): Reset. Reinicia la conexión cuando falla el intento de conexión o al rechazar paquetes no válidos.
+        + SYN(1 bit): Synchronize. Sincroniza los números de secuencia para iniciar la conexión. Solo el primer paquete enviado de cada extremo debería tener este flag seteado.
+        + FIN(1 bit): el último paquete del emisor. Se utiliza para solicitar la liberación de la conexión.
+    * Window size(Tamaño de ventana): 16 bits. El tamaño de la ventana del receptor, la cual especifica, en número de unidades de tamaño de ventana(por defecto, bytes) que pueden ser metidos en el buffer de recepción o, dicho de otro modo, el número máximo de unidades pendientes de acuse. Es un sistema de control de flujo.
+    * Checksum(Suma de verificación): 16 bits. Checksum utilizado para la comprobación de errores tanto en la cabecera como en los datos.
+    * Urgent pointer(Puntero urgente): 16 bits. Si el flag está seteado, indica la cantidad de bytes desde el número de secuencia que indica el lugar donde acaban los datos urgentes.
+    * Options(Opciones): se usa para añadir características no cubiertas por la cabecera fija, como el SACK, la escala de la ventana y el tamaño máximo del segmento, entre otras.
+    * Padding(Relleno): se utiliza para asegurarse que la cabecera acaba con un tamaño múltiplo de 32 bits. El padding se compone de zeros.
+
+    ![udp_datagram](images/udp_datagram.jpg)
+
+    * Source port number(Número de puerto fuente): Este campo, cuando es usado, identifica al puerto del emisor y debería asumirse como el puerto a responder, si fuera necesario. Si no es usado, debería ser zero. Si el host fuente es el cliente, el número del puerto sea probablemente un número de puerto efímero. Si el host fuente es el servidor, el número de puerto sea probablemente uno ya bien conocido.
+    * Destination port number(Número de puerto destino): Este campo identifica al puerto del receptor y es requerido. Muy similar a lo que ocurre con el puerto fuente, si el cliente es el host de destino, el número del puerto sea probablemente un número de puerto efímero; y si el host destino es el servidor, el número de puerto sea probablemente uno ya bien conocido.
+    * Length(Longitud): Este campo especifica la longitud en bytes del header UDP y la data UDP. La mínima es 8 bytes, la longitud del header. El tamaño teórico del campo es de 65535 bytes(8 bytes de header y 65257 bytes de data) para un datagrama UDP. Sin embargo, el límite actual, el cual es impuesto por el protocolo IPv4 subyaciente es de 65507 bytes(Si son 65535, 8 bytes son de header, y 20 bytes son de header IPv4). Usando jumbograms de IPv6 es posible que los paquetes de UDP sean más grandes que 65535 bytes.
+    * Checksum(Suma de verificación): El campo del checksum podría ser utilizado para la comprobación de errores en el header y la data. Este campo es opcional en IPv4 y obligatorio en IPv6. Si no es usado, se llena con zeros.
