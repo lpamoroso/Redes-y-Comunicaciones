@@ -96,3 +96,7 @@
 14. Dada la sesión TCP de la figura, completar los valores marcados con un signo de interrogación.
 
     ![05-14](images/05-14.jpg)
+
+15. Completar los datos que faltan en el intercambio de mensajes del siguiente diagrama de flujo TCP:
+
+    ![05-15](images/05-15.jpg)
