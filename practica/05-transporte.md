@@ -86,3 +86,7 @@
     //PREGUNTAR. Es un método de envío simultáneo de paquetes(a nivel de IP) que tan solo serán recibidos por un determinado grupo de receptores, que están interesados en los mismos. Multicast usa UDP porque es más chico, simple y eficiente que TCP. El único problema es si uno de los receptores no recibe uno o más mensajes: no hya forma de que yo sepa que no le llegó así como también el no tiene forma de saber que yo le envié algo. Por lo general, el multicast está preparado para estas situaciones con una serie de mecanismos(_brokers_) que ayudan a que los mensajes no se pierdan. Si bien podría realizarse multicast usando TCP, sería exponencialmente costoso por toda la confiabilidad que, a cambio, el protocolo brinda.
 
 12. QUEDA PENDIENTE
+
+13. De acuerdo a la captura de la siguiente figura, indique los valores de los campos borroneados.
+
+    ![05-13](images/05-13.jpg)
