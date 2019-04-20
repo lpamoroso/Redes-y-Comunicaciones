@@ -90,3 +90,7 @@
 13. De acuerdo a la captura de la siguiente figura, indique los valores de los campos borroneados.
 
     ![05-13](images/05-13.jpg)
+
+14. Dada la sesión TCP de la figura, completar los valores marcados con un signo de interrogación.
+
+    ![05-14](images/05-14.jpg)
