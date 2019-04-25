@@ -48,7 +48,7 @@
 
 3. ¿Cuál es el objetivo del uso de puertos en el modelo TCP/IP?
 
-    //PREGUNTAR. El objetivo de los puertos es que en cada uno se aloje un proceso de aplicación. Si no hubieran tantos puertos, no se podrían llevar a cabo tantas conexiones TCP. Cada puerto tiene asignado un socket que es la "puerta" entre la capa de aplicación y transporte.
+    El objetivo de los puertos es poder ofrecer tantos servicios como sea posible. Si no hubieran tantos puertos, no se podrían llevar a cabo tantas conexiones TCP. Cada puerto tiene asignado un socket que es la "puerta" entre la capa de aplicación y transporte.
 
 4. Compare TCP y UDP en cuanto a:
 
