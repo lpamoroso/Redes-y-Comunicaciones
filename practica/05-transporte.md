@@ -79,9 +79,15 @@
 
 8. //PASO DE LARGO
 
-9. //PREGUNTA QUE HOST USO CON EL HPING3
+9. ¿Qué sucede si llega un segmento TCP a un host que no tiene ningún proceso esperando en el puertodestino de dicho segmento (es decir, que dicho puerto no está en estado LISTEN)
+    a. Utilice hping3 para enviar paquetes TCP al puerto destino 22 de la máquina virtual con el flag SYN activado.
+    b. Utilice hping3 para enviar paquetes TCP al puerto destino 40 de la máquina virtual con el flag SYN activado.
+    c. ¿Qué diferencias nota en las respuestas obtenidas en los dos casos anteriores? ¿Puede explicar aqué se debe? (Ayuda: utilice el comando ss visto anteriormente)
 
-10. //PREGUNTAR QUE HOST USO CON EL HPING3
+10. ¿Qué sucede si llega un datagrama UDP a un host que no tiene a ningún proceso esperando en el puerto destino de dicho datagrama(es decir, que dicho puerto no está en estado LISTEN)?
+    a. Utilice hping3 para enviar datagramas UDP al puerto destino 68 de la máquina virtual.
+    b. Utilice hping3 para enviar datagramas UDP al puerto destino 40 de la máquina virtual.
+    c. ¿Qué diferencias nota en las respuestas obtenidas en los dos casos anteriores? ¿Puede explicar aqué se debe? (Ayuda: utilice el comando ss visto anteriormente).
 
 11. Investigue qué es multicast ¿Sobre cuál de los protocolos de capa de transporte funciona? ¿Se podría adaptar para que funcione sobre el otro protocolo de capa de transporte? ¿Por qué?
 
