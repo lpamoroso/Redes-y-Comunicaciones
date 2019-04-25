@@ -62,7 +62,7 @@
 
 5. La PDU de la capa de transporte es el segmento. Sin embargo, en algunos contextos suele utilizarse el término datagrama. Indique cuándo.
 
-    //PREGUNTAR. Se suele hablar de segmento TCP y datagrama UDP, dado el propio nombre de UDP(Used Datagram Protocol).
+    Se suele hablar de segmento TCP y datagrama UDP, dado el propio nombre de UDP(Used Datagram Protocol).
 
 6. Describa el saludo de tres vías de TCP.
 
