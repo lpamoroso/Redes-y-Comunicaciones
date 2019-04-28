@@ -33,4 +33,55 @@ Dada la primera exitosa responder:
 
 3. Qué opciones se negocian. Qué signiﬁca c/u? Cuál es el MTU negociado?
 
+    Las opciones que se negocian son las siguientes:
     
+    * Maximun Segment Size
+    
+        El tamaño máximo de segmento (MSS) es la máxima cantidad de datos, especificada en bytes, que TCP está dispuesto a recibir en un solo segmento. Para obtener el mejor rendimiento, el MSS debe configurarse lo suficientemente pequeño para evitar la fragmentación de IP, lo que puede llevar a la pérdida de paquetes y retransmisiones excesivas. Para tratar de lograr esto, generalmente el MSS es anunciado por cada lado, utilizando la opción MSS, cuando se establece la conexión TCP, en cuyo caso se deriva del tamaño de la unidad de transmisión máxima(_Maximum Transfer Unit_, MTU) de la capa de enlace de datos de las redes a las que el emisor y el receptor están directamente conectados. Además, los remitentes de TCP pueden usar la técnica de _Path MTU Discovery_ (PMTUD) para inferir la MTU mínima a lo largo de la ruta de red entre el remitente y el receptor, y usar esto para ajustar dinámicamente el MSS para evitar la fragmentación de IP dentro de la red.
+
+        El anuncio de MSS también se suele llamar "negociación de MSS". Estrictamente hablando, el MSS no se "negocia" entre el emisor y el receptor, porque tal afirmación implicaría que éstos negociarán y acordarán un MSS único y unificado que se aplique a todas las comunicaciones en ambas direcciones de la conexión. Esto no es así, ya que, en una conexión TCP, los valores podrían ser completamente distintos e independientes para las dos direcciones del flujo de datos. Esta situación puede surgir, por ejemplo, si uno de los dispositivos que participan en una conexión tiene una cantidad extremadamente limitada de memoria reservada(quizás incluso más pequeña que la MTU promedio descubierta con el PMTUD) para procesar los segmentos TCP entrantes.
+        
+    * SACK
+
+        Confiar exclusivamente en el esquema de ACK acumulativo empleado por el protocolo TCP original puede provocar ineficiencias cuando se pierden paquetes. Por ejemplo, suponga que los bytes con el número de secuencia 1.000 a 10.999 se envían en 10 segmentos TCP diferentes de igual tamaño, y el segundo segmento(números de secuencia 2.000 a 2.999) se pierde durante la transmisión. En un protocolo de ACK acumulativo puro, el receptor solo puede enviar un valor ACK acumulativo de 2,000(el número de secuencia inmediatamente después del último número de secuencia de los datos recibidos) y no puede decir que recibió los bytes 3,000 a 10,999 con éxito. Por lo tanto, es posible que el remitente tenga que reenviar todos los datos a partir del número de secuencia 2,000.
+
+        Para solucionar este problema, TCP emplea la opción de reconocimiento selectivo (_Selective Acknowledgement_, SACK), definida en 1996 en la RFC 2018, que le permite al receptor reconocer bloques discontinuos de paquetes que se recibieron correctamente, además del número de secuencia inmediatamente después del último número de secuencia del último byte contiguo recibido sucesivamente, como en el reconocimiento TCP básico. El ACK puede especificar un número de bloques SACK, donde cada uno de ellos es transportado por el _Borde Izquierdo del Bloque_(el primer número de secuencia del bloque) y el _Borde Derecho del Bloque_(el número de secuencia inmediatamente después del último número de secuencia del bloque), con un _Bloque_ que es un rango contiguo que el receptor recibió correctamente. En el ejemplo anterior, el receptor enviaría un segmento ACK con un valor ACK acumulativo de 2,000 y un encabezado de opción SACK con números de secuencia 3,000 y 11,000. En consecuencia, el remitente solo retransmitiría el segundo segmento con números de secuencia de 2,000 a 2,999.
+
+        Un remitente de TCP puede interpretar una entrega de segmento fuera de orden como un segmento perdido. Si lo hace, el remitente de TCP retransmitirá el segmento anterior al paquete fuera de orden y reducirá la velocidad de entrega de datos para esa conexión. La opción de SACK duplicado(_duplicate-SACK_), una extensión de la opción de SACK que se definió en mayo de 2000 en RFC 2883, resuelve este problema. El receptor TCP envía un D-ACK para indicar que no se perdieron segmentos, y el remitente TCP puede restablecer la tasa de transmisión más alta.
+
+        La opción SACK no es obligatoria, y entra en operación solo si ambas partes la apoyan. Esto se negocia cuando se establece una conexión. SACK usa una opción de encabezado TCP. El uso de SACK se ha generalizado: todas las pilas TCP populares lo admiten.
+
+    * Timestamps
+
+        Las marcas de tiempo(_timestamps_) TCP, definidas en RFC 1323 en 1992, pueden ayudar a TCP a determinar en qué orden se enviaron los paquetes. Las marcas de tiempo de TCP normalmente no están alineadas con el reloj del sistema y comienzan con algún valor aleatorio. Muchos sistemas operativos incrementarán la marca de tiempo por cada milisegundo transcurrido; sin embargo, el RFC solo establece que los ticks deben ser proporcionales.
+
+        Hay dos campos de marca de tiempo:
+
+        + Un valor de marca de tiempo del remitente(_sender timestamp_) de 4 bytes (mi marca de tiempo)
+        + Un valor de marca de tiempo de respuesta del receptor(_echo reply timestamp_) de 4 bytes (la marca de tiempo más reciente recibida).
+
+        Las marcas de tiempo de TCP se utilizan en un algoritmo conocido como Números de protección contra secuencia envuelta, o PAWS(Protection Against Wrapped Sequence numbers). PAWS se usa cuando la ventana de recepción cruza el límite del número de secuencia. En el caso de que un paquete se haya retransmitido potencialmente, responde a la pregunta: "¿Es este número de secuencia en los primeros 4 GB o en el segundo?" Y la marca de tiempo se utiliza para romper el empate.
+
+        Además, el algoritmo de detección de Eifel(RFC 3522) utiliza marcas de tiempo de TCP para determinar si se están produciendo retransmisiones porque los paquetes se pierden o simplemente están fuera de servicio.
+    
+    * No-Operation(NOP)
+
+        La opción NOP significa "Sin opción" y se utiliza para separar las diferentes opciones utilizadas dentro del campo Opción en el segmento TCP. La implementación del campo NOP depende del sistema operativo utilizado. Por ejemplo, si se usan las opciones MSS y SACK, Windows XP usualmente colocará dos NOP entre ellas. Por ́último, debemos tener en cuenta que la opción NOP ocupa 1 byte. En nuestro ejemplo, ocuparía 2 bytes ya que se usaría dos veces.
+
+    * Windows Scaling
+
+        Para un uso más eficiente de las redes de alto ancho de banda, se puede usar un tamaño de ventana TCP más grande. El campo de tamaño de la ventana TCP controla el flujo de datos y su valor está limitado a entre 2 y 65,535 bytes.
+
+        Como el campo de tamaño no se puede expandir, se usa un factor de escala. La opción de ventana escalable(_windows scaling_), como se define en la RFC 1323, es una opción que se utiliza para aumentar el tamaño máximo de la ventana de 65,535 bytes a 1 gigabyte. La ampliación a tamaños de ventana más grandes es una parte de lo que es necesario para el ajuste de TCP.
+
+        La opción de escala de ventana se usa solo durante el protocolo de tres vías o _three-way handshake_. El valor de ventana escalable representa el número de bits para desplazar a la izquierda el campo de tamaño de ventana de 16 bits. El valor de ventana escalable se puede establecer de 0(sin cambio) a 14 para cada dirección independientemente. Ambos lados deben enviar la opción en sus segmentos SYN para habilitar el escalado de la ventana en cualquier dirección.
+
+    El MTU se calcula del siguiente modo:
+
+        MTU = IP Header length + TCP header length + Data length
+
+    Por lo tanto, en nuestro caso:
+
+        MTU = 20 bytes + 40 bytes + 1460 bytes
+
+        MTU = 1520 bytes
