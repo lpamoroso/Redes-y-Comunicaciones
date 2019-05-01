@@ -86,9 +86,9 @@ Dada la primera exitosa responder:
 
         MTU = 1520 bytes
 
- 7. El que envía datos es el cliente (10.0.1.10:51373)
+7. El que envía datos es el cliente (10.0.1.10:51373)
 
- 8. origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
+8. origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
 
     * Se envı́an datos de 24 bytes.
 
@@ -99,4 +99,26 @@ Dada la primera exitosa responder:
     
     * Se confirman 24 bytes. Esto se obtiene del numero de ACK (Secuencia anterior + bytes confirmados).
     Siendo el valor de ACK = 25  y el anterior numero de secuencia = 1, podemos calcular que se confirma la recepción de 24 bytes.
+
+9. Control de Flujo:
+
+    1. Se activa en algún momento el mecanismo de control de flujo?
+
+        Si, se puede apreciar en el segmento 280 en el que la ventana se llena.
+
+    2. Indicar donde(tiempo, número de fila y número de secuencia TCP) y a que se debe?
+
+        En el segmento 280, a los 12.168621 segundos, con número de secuencia absoluto 3436497107(y relativo 254873) dado que se llenó la ventana. Esto se produce cuando el emisor envía más datos de los que el receptor llega a procesar. El receptor siempre se limita a enviar su tamaño de ventana. Eventualmente, el tamaño será lo suficientemente bajo, y cuando el emisor envíe ese tamaño, que es mayor a lo que soporta la ventana del receptor, marcará con un flag(Window Full) que indica que la ventana está llena y que no puede enviar tantos datos como quisiera. El receptor solo recibirá la parte que puede guardar en su ventana, el resto se perderá. En los próximos segmentos, el receptor se limitará a informar al emisor que la ventana está en 0 mediante el flag ZeroWindow, y el emisor se limitará a esperar y enviará el flag keep-alive. Cuando la ventana vuelve a abrirse, el receptor envía el flag Window Update y el emisor vuelve a enviar la data que le quedó pendiente cuando la ventana se había llenado y la comunicación continúa.
+
+    3. Cuánto tiempo parece durar?
+
+        Dura 10.142373‬ segundos, desde el segmento 280 hasta el 286 en el que la ventana vuelve a tener espacio.
+
+    4. Cuál es el numero de ventana que desactiva el mismo?
+
+        En el segmento 279, se puede apreciar que el receptor envía un tamaño de ventana de 64. Lo que ocurre luego es que el emisor intenta enviar 1024 bytes cuando el tamaño de ventana es solo 64, por lo que se envian solo 64 y el emisor marca que la ventana se ha llenado. Los próximos segmentos del receptor traerán seteado el flag ZeroWindow mientras la ventana permanezca llena.
+
+    5. Qué otros datos se pueden obtener?
+
+        Que el receptor no procesa tan rápido como el emisor envía y que: o bien, el emisor envíe menos datos para que la ventana no se llene; o bien, el receptor aumente el tamaño de su ventana para evitar que se llene tan rápido.
 
