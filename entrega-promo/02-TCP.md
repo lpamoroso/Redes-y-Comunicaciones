@@ -27,11 +27,11 @@ Dada la primera exitosa responder:
 
     La IP que inicia la conexión es la 10.0.1.10. Esta misma IP es el cliente dado que es la única que *pushea* datos. La IP 10.0.3.10 se limita solo a recibirlos, por lo que solo actúa de servidor.
 
-2. Qué ISNs se intercambian?
+5. Qué ISNs se intercambian?
 
     El ISN de 10.0.1.10 es 3436242234, el de 10.0.3.10 es 2219352712.
 
-3. Qué opciones se negocian. Qué signiﬁca c/u? Cuál es el MTU negociado?
+6. Qué opciones se negocian. Qué signiﬁca c/u? Cuál es el MTU negociado?
 
     Las opciones que se negocian son las siguientes:
     
