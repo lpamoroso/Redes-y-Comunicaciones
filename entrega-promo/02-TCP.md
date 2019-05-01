@@ -88,11 +88,11 @@ Dada la primera exitosa responder:
 
 7. Quién es el que envía la mayor cantidad de datos (IP:port)?
 
-El que envía datos es el cliente (10.0.1.10:51373)
+    El que envía datos es el cliente (10.0.1.10:51373)
 
 8. Identificar primer segmento de datos (origen, destino, tiempo, númerode fila y número de secuencia TCP).
 
-    origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
+    Origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
 
     * Cuántos datos lleva?
 
@@ -100,15 +100,12 @@ El que envía datos es el cliente (10.0.1.10:51373)
 
     * Cúando es confirmado?(tiempo, número de fila y número de secuencia TCP)?
     
-        Los datos se confirman en el segemento
-        * fila: 5,
-        * tiempo: 0.234601,	
-        * Numero de secuencia: 1,
+        Los datos se confirman en el segmento de fila 5, tiempo 0.234601 y número de secuencia 1.
     
-    * La confirmación, qué cantidad de bytes confirma ?
+    * La confirmación, qué cantidad de bytes confirma?
     
-     Se confirman 24 bytes. Esto se obtiene del numero de ACK (Secuencia anterior + bytes confirmados).
-    Siendo el valor de ACK = 25  y el anterior numero de secuencia = 1, podemos calcular que se confirma la recepción de 24 bytes.
+        Se confirman 24 bytes. Esto se obtiene del numero de ACK (Secuencia anterior + bytes confirmados).  
+        Siendo el valor de ACK = 25  y el anterior numero de secuencia = 1, podemos calcular que se confirma la recepción de 24 bytes.
 
 9. Control de Flujo:
 
@@ -135,20 +132,20 @@ El que envía datos es el cliente (10.0.1.10:51373)
 10. Control de congestión:
     1. Se encuentra en la red indicios de control de congestión?
     
-    No se observan indicios del control de congestión en la captura.
+        No se observan indicios del control de congestión en la captura.
 
     2. Cómo se detectan? Indicar número de segmento perdido.
 
-    Cuando hay mas de 3 RST seguidos, esto indica que se produce congestión. 
+        Cuando hay mas de 3 RST seguidos, esto indica que se produce congestión. 
     No puedo indicar un número de segmento perdido, dado que no se activa en ninguna parte de la captura.
 
     3. En que momento se ve la primera retransmisión? 
     
-    No se observan restransmisiones en la captura.
+        No se observan restransmisiones en la captura.
 
     4. Cuántos segmentos se re-transmiten?
 
-    No se observan restransmisiones en la captura.
+        No se observan restransmisiones en la captura.
 
 11. Quién inicia el cierre de la conexión? Qué flags se utilizan? En que segmentos se ve ésta(tiempo, número de fila y número de secuencia TCP)
 
