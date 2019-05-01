@@ -23,7 +23,7 @@ Para la captura dada analizar con el siguiente cuestionario utilizando una herra
 
 Dada la primera exitosa responder:
 
-1. Quién inicia la conexión, quien sería el servidor y quién el cliente? Qué ﬂags se ven activados? En que segmentos se ve el 3-way hand-shake?
+4. Quién inicia la conexión, quien sería el servidor y quién el cliente? Qué ﬂags se ven activados? En que segmentos se ve el 3-way hand-shake?
 
     La IP que inicia la conexión es la 10.0.1.10. Esta misma IP es el cliente dado que es la única que *pushea* datos. La IP 10.0.3.10 se limita solo a recibirlos, por lo que solo actúa de servidor.
 
@@ -85,3 +85,18 @@ Dada la primera exitosa responder:
         MTU = 20 bytes + 40 bytes + 1460 bytes
 
         MTU = 1520 bytes
+
+ 7. El que envía datos es el cliente (10.0.1.10:51373)
+
+ 8. origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
+
+    * Se envı́an datos de 24 bytes.
+
+    * Los datos se confirman en el segemento
+        * fila: 5,
+        * tiempo: 0.234601,	
+        * Numero de secuencia: 1,
+    
+    * Se confirman 24 bytes. Esto se obtiene del numero de ACK (Secuencia anterior + bytes confirmados).
+    Siendo el valor de ACK = 25  y el anterior numero de secuencia = 1, podemos calcular que se confirma la recepción de 24 bytes.
+
