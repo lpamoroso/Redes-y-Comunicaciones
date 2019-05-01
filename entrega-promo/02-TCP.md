@@ -151,6 +151,19 @@ Dada la primera exitosa responder:
 
 13. El BW digital alcanzado, cual parece ser?
 
-    El bandwidth suele ser de 255000 bits/s, excepto cuando se llena la ventana en que se reduce drásticamente
+    El bandwidth suele ser de 255000 bits/s, excepto cuando se llena la ventana en que se reduce drásticamente.
 
     ![TCP-entrega-throughput](img/TCP-entrega-throughput.jpg)
+
+14. Qué otros datos puede obtener de la captura sobre el flujo analizado?
+
+    Otros datos que se pueden obtener son los siguientes:
+    
+    Por un lado tenemos el gráfico de Time Sequence(Stevens). Este es un gráfico simple que permite ver la evolución del número de secuencia TCP a lo largo del tiempo, similar a los utilizados en la serie de libros "Ilustrados TCP / IP" de Richard Stevens.
+    
+    ![TCP-entrega-stevens](img/TCP-entrega-stevens.jpg)
+    
+    Por otro lado tenemos la gráfica de Time Sequence (tcptrace). Este gráfico muestra métricas de TCP similares a la utilidad tcptrace, que incluyen segmentos hacia adelante, ACK, ACK selectivos, tamaños de ventana inversa y cero ventanas.
+
+    ![TCP-entrega-tcptrace](img/TCP-entrega-tcptrace.jpg)
+    
