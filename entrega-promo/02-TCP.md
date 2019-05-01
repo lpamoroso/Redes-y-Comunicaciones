@@ -160,7 +160,7 @@ Dada la primera exitosa responder:
 
     El bandwidth suele ser de 255000 bits/s, excepto cuando se llena la ventana en que se reduce drásticamente.
 
-    ![TCP-entrega-throughput](img/TCP-entrega-throughput.jpg)
+    ![TCP-entrega-throughput](https://raw.githubusercontent.com/tiernis/Redes-y-Comunicaciones/master/entrega-promo/img/TCP-entrega-throughput.jpg)
 
 14. Qué otros datos puede obtener de la captura sobre el flujo analizado?
 
@@ -168,9 +168,9 @@ Dada la primera exitosa responder:
     
     Por un lado tenemos el gráfico de Time Sequence(Stevens). Este es un gráfico simple que permite ver la evolución del número de secuencia TCP a lo largo del tiempo, similar a los utilizados en la serie de libros "Ilustrados TCP / IP" de Richard Stevens.
     
-    ![TCP-entrega-stevens](img/TCP-entrega-stevens.jpg)
+    ![TCP-entrega-stevens](https://raw.githubusercontent.com/tiernis/Redes-y-Comunicaciones/master/entrega-promo/img/TCP-entrega-stevens.jpg)
     
     Por otro lado tenemos la gráfica de Time Sequence (tcptrace). Este gráfico muestra métricas de TCP similares a la utilidad tcptrace, que incluyen segmentos hacia adelante, ACK, ACK selectivos, tamaños de ventana inversa y cero ventanas.
 
-    ![TCP-entrega-tcptrace](img/TCP-entrega-tcptrace.jpg)
+    ![TCP-entrega-tcptrace](https://raw.githubusercontent.com/tiernis/Redes-y-Comunicaciones/master/entrega-promo/img/TCP-entrega-tcptrace.jpg)
     
