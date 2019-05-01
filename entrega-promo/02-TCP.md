@@ -86,18 +86,28 @@ Dada la primera exitosa responder:
 
         MTU = 1520 bytes
 
-7. El que envía datos es el cliente (10.0.1.10:51373)
+7. Quién es el que envía la mayor cantidad de datos (IP:port)?
 
-8. origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
+El que envía datos es el cliente (10.0.1.10:51373)
 
-    * Se envı́an datos de 24 bytes.
+8. Identificar primer segmento de datos (origen, destino, tiempo, númerode fila y número de secuencia TCP).
 
-    * Los datos se confirman en el segemento
+    origen: 10.0.1.10, destino: 10.0.3.10, tiempo: 0.234507, fila: 4, número de secuencia: 1
+
+    * Cuántos datos lleva?
+
+        Se envı́an datos de 24 bytes.
+
+    * Cúando es confirmado?(tiempo, número de fila y número de secuencia TCP)?
+    
+        Los datos se confirman en el segemento
         * fila: 5,
         * tiempo: 0.234601,	
         * Numero de secuencia: 1,
     
-    * Se confirman 24 bytes. Esto se obtiene del numero de ACK (Secuencia anterior + bytes confirmados).
+    * La confirmación, qué cantidad de bytes confirma ?
+    
+     Se confirman 24 bytes. Esto se obtiene del numero de ACK (Secuencia anterior + bytes confirmados).
     Siendo el valor de ACK = 25  y el anterior numero de secuencia = 1, podemos calcular que se confirma la recepción de 24 bytes.
 
 9. Control de Flujo:
