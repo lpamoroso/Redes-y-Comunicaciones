@@ -122,3 +122,22 @@ Dada la primera exitosa responder:
 
         Que el receptor no procesa tan rápido como el emisor envía y que: o bien, el emisor envíe menos datos para que la ventana no se llene; o bien, el receptor aumente el tamaño de su ventana para evitar que se llene tan rápido.
 
+10. Control de congestión:
+    1. Se encuentra en la red indicios de control de congestión?
+    
+    No se observan indicios del control de congestión en la captura.
+
+    2. Cómo se detectan? Indicar número de segmento perdido.
+
+    Cuando hay mas de 3 RST seguidos, esto indica que se produce congestión. 
+    No puedo indicar un número de segmento perdido, dado que no se activa en ninguna parte de la captura.
+
+    3. En que momento se ve la primera retransmisión? 
+    
+    No se observan restransmisiones en la captura.
+
+    4. Cuántos segmentos se re-transmiten?
+
+    No se observan restransmisiones en la captura.
+
+
