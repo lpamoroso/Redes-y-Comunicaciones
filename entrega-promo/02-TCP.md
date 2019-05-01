@@ -157,7 +157,7 @@ El que envía datos es el cliente (10.0.1.10:51373)
 12. El RTT entre que valores oscila?
 
     El Round Time Trip oscila entre valores muy cercanos al 0 y 233. 
-    ![TCP-entrega-rtt](img/TCP-entrega-rtt.jpg)
+    ![TCP-entrega-rtt](https://raw.githubusercontent.com/tiernis/Redes-y-Comunicaciones/master/entrega-promo/img/TCP-entrega-rtt.jpg)
 
 13. El BW digital alcanzado, cual parece ser?
 
