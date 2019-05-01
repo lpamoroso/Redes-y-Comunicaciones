@@ -154,7 +154,7 @@ Dada la primera exitosa responder:
 12. El RTT entre que valores oscila?
 
     El Round Time Trip oscila entre valores muy cercanos al 0 y 233. 
-    ![TCP-entrega-rtt](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2qf68rb8EJRIlgn78Zz17z7NANhdzlfzEiBt5wSrJLt_eCMU4BA)
+    ![TCP-entrega-rtt](https://raw.githubusercontent.com/tiernis/Redes-y-Comunicaciones/master/entrega-promo/img/TCP-entrega-rtt.jpg)
 
 13. El BW digital alcanzado, cual parece ser?
 
