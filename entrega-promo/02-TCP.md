@@ -140,4 +140,6 @@ Dada la primera exitosa responder:
 
     No se observan restransmisiones en la captura.
 
+11. Quién inicia el cierre de la conexión? Qué flags se utilizan? En que segmentos se ve ésta(tiempo, número de fila y número de secuencia TCP)
 
+    El emisor de la conexión inicia el cierre en el segmento 603, a los 31.177540 segundos, enviando el flag FIN y pusheando los últimos datos restantes. El receptor recibe la petición de FIN, los datos y envía al emisor también un FIN para indicar el cierre de ese extremo. Luego, el emisor recibe el FIN y envía un ACK y se cierra la conexión.
