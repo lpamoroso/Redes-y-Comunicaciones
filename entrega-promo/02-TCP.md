@@ -144,6 +144,11 @@ Dada la primera exitosa responder:
 
     El emisor de la conexión inicia el cierre en el segmento 603, a los 31.177540 segundos, enviando el flag FIN y pusheando los últimos datos restantes. El receptor recibe la petición de FIN, los datos y envía al emisor también un FIN para indicar el cierre de ese extremo. Luego, el emisor recibe el FIN y envía un ACK y se cierra la conexión.
 
+12. El RTT entre que valores oscila?
+
+    El Round Time Trip oscila entre valores muy cercanos al 0 y 233. 
+    ![TCP-entrega-rtt](img/TCP-entrega-rtt.jpg)
+
 13. El BW digital alcanzado, cual parece ser?
 
     El bandwidth suele ser de 255000 bits/s, excepto cuando se llena la ventana en que se reduce drásticamente
