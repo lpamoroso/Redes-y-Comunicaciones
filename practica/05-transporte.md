@@ -89,7 +89,9 @@
     2. Utilice hping3 para enviar datagramas UDP al puerto destino 40 de la máquina virtual.
     3. ¿Qué diferencias nota en las respuestas obtenidas en los dos casos anteriores? ¿Puede explicar aqué se debe? (Ayuda: utilice el comando ss visto anteriormente).
 
-    La diferencia es que, como se puede ver en la captura con el ss, el puerto 68 está abierto y el 40, no. De ahí que, cuando ejecuto el hping con el puerto 68, puede enviar datos; pero, cuando lo ejecuto con el puerto 40, en ese caso recibo un mensaje del protocolo ICMP indicando que el puerto es inalcanzable, como también puede verse en la imágenes.
+    La diferencia es que, como se puede ver en la captura con el ss, el puerto 68 está abierto y el 40, no. De ahí que, cuando ejecuto el hping con el puerto 68, puede enviar datos; pero, cuando lo ejecuto con el puerto 40, en ese caso recibo un mensaje del protocolo ICMP indicando que el puerto es inalcanzable, como también puede verse en la imagen.
+
+    ![03-09](images/03-09.png)
 
 11. Investigue qué es multicast ¿Sobre cuál de los protocolos de capa de transporte funciona? ¿Se podría adaptar para que funcione sobre el otro protocolo de capa de transporte? ¿Por qué?
 
