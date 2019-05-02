@@ -80,9 +80,15 @@
 8. //PASO DE LARGO
 
 9. ¿Qué sucede si llega un segmento TCP a un host que no tiene ningún proceso esperando en el puerto destino de dicho segmento (es decir, que dicho puerto no está en estado LISTEN)
-    a. Utilice hping3 para enviar paquetes TCP al puerto destino 22 de la máquina virtual con el flag SYN activado.
-    b. Utilice hping3 para enviar paquetes TCP al puerto destino 40 de la máquina virtual con el flag SYN activado.
-    c. ¿Qué diferencias nota en las respuestas obtenidas en los dos casos anteriores? ¿Puede explicar aqué se debe? (Ayuda: utilice el comando ss visto anteriormente)
+    1. Utilice hping3 para enviar paquetes TCP al puerto destino 22 de la máquina virtual con el flag SYN activado.
+    2. Utilice hping3 para enviar paquetes TCP al puerto destino 40 de la máquina virtual con el flag SYN activado.
+    3. ¿Qué diferencias nota en las respuestas obtenidas en los dos casos anteriores? ¿Puede explicar aqué se debe? (Ayuda: utilice el comando ss visto anteriormente)
+
+    Las diferencias están en que en el puerto 22 hay una conexión establecida, por lo que si envío SYN, devuelve SYN-ACK. En el puerto 40 no hay nada, por lo que devuelve RST-ACK. El comando ss muestra más detalladamente que existe una conexión TCP en el puerto 22, no así en el 40.
+
+    ![03-09-01](images/03-09-01.png)
+
+    ![03-09-02](images/03-09-02.png)
 
 10. ¿Qué sucede si llega un datagrama UDP a un host que no tiene a ningún proceso esperando en el puerto destino de dicho datagrama(es decir, que dicho puerto no está en estado LISTEN)?
     1. Utilice hping3 para enviar datagramas UDP al puerto destino 68 de la máquina virtual.
@@ -91,7 +97,9 @@
 
     La diferencia es que, como se puede ver en la captura con el ss, el puerto 68 está abierto y el 40, no. De ahí que, cuando ejecuto el hping con el puerto 68, puede enviar datos; pero, cuando lo ejecuto con el puerto 40, en ese caso recibo un mensaje del protocolo ICMP indicando que el puerto es inalcanzable, como también puede verse en la imagen.
 
-    ![03-09](images/03-09.png)
+    ![03-10-01](images/03-10-01.png)
+
+    ![03-10-02](images/03-10-02.png)
 
 11. Investigue qué es multicast ¿Sobre cuál de los protocolos de capa de transporte funciona? ¿Se podría adaptar para que funcione sobre el otro protocolo de capa de transporte? ¿Por qué?
 
