@@ -32,3 +32,22 @@
     + ¿Cuál es la dirección de broadcast en capa de enlace? ¿Qué función cumple?
 
         La dirección de broadcast es FF:FF:FF:FF:FF:FF. Su funci´no es hacer que los marcos que sean dirigidos a ella alcancen todas las computadores de una LAN determinada. Los marcos de ethernet que contengan paquetes IP de broadcastson usualmente enviados a esta dirección. La dirección de broadcast es usada por el protocolo de resolución de direcciones(ARP) y el de neighbour discovery para traducir direcciones IP en direcciones MAC.
+
+4. Sobre los dispositivos de capa de enlace:
+
+    + Enumere dispositivos de capa de enlace y explique sus diferencias.
+
+        - Bridge(Puente de red): es un dispositivo de interconexión de redes de ordenadores que opera en la capa de enlace. Un bridge conecta segmentos de red formando una sola subred(permite conexión entre equipos sin necesidad de routers). Funciona a través de una tabla de direcciones MAC detectadas en cada segmento al que está conectado.
+        - Switch(Conmutador): es un dispositivo digital lógico de interconexión de redes de computadoras que opera en la capa de enlace. Su función es interconectar dos o más segmentos de red, pasando datos de un segmento a otro de acuerdo con la dirección MAC de destino de las tramas en la red.
+
+    + ¿Qué es una colisión?
+
+        Cuando los dispositivos intentan usar un medio simultáneamente podrían ocurrir colisión de marcos. Los protocolos de capa de enlace especifican cómo los dispositivos detectan y recuperan ante tales colisiones, y podrían proveer mecanismos que los reducen o los previenen. 
+
+    + ¿Qué dispositivos dividen dominios de broadcast?
+
+        Los routers.
+
+    + ¿Qué dispositivos dividen dominios de colisión?
+
+        Los routers y los switches.
