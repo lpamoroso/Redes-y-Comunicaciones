@@ -16,3 +16,19 @@
     * Técnicas de almacenamiento y reenvío y conmutación virtual cut-through.
     * Control de calidad de servicio.
     * Virtual LANs.
+
+2. Compare los servicios de la capa de enlace con los de la capa de transporte.
+
+3. Direccionamiento Ethernet:
+
+    + ¿Cómo se identiﬁcan dos máquinas en una red Ethernet?
+
+        Mediante las direcciones MAC.
+
+    + ¿Cómo se llaman y qué características poseen estas direcciones?
+
+        Son 48 bits de espacio. Cada uno de los tres sistemas numéricos usan el mismo formato y difieren tan solo en el tamaño del identificador. Las direcciones pueden ser direcciones "localmente administradas" o "universalmente administradas". Una dirección universalmente administrada es únicamente asignada a un dispositivo por su fabricante. Los tres primeros octetos identifican a la organización que publicó el identificador y son conocidas como "identificador de organización único". Con esto podemos determinar, como si fuera una huella digital, desde que dispositivo de red se emitió el paquete de datos aunque este cambie de dirección IP, ya que este código se ha acordado por cada fabricante de dispositivos.
+
+    + ¿Cuál es la dirección de broadcast en capa de enlace? ¿Qué función cumple?
+
+        La dirección de broadcast es FF:FF:FF:FF:FF:FF. Su funci´no es hacer que los marcos que sean dirigidos a ella alcancen todas las computadores de una LAN determinada. Los marcos de ethernet que contengan paquetes IP de broadcastson usualmente enviados a esta dirección. La dirección de broadcast es usada por el protocolo de resolución de direcciones(ARP) y el de neighbour discovery para traducir direcciones IP en direcciones MAC.
