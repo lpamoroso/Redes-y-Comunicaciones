@@ -51,3 +51,7 @@
     + ¿Qué dispositivos dividen dominios de colisión?
 
         Los routers y los switches.
+
+5. Describa el algoritmo de acceso al medio en Ethernet ¿Es orientado a la conexión?
+
+    Ethernet transmite solo mientras otro no esté transmitiendo. Puede darse que justo dos al mismo tiempo transmitan, en este caso se produce una colisión y se resuelve mediante un algoritmo que hace que los colisionantes reenvíen el paquete en tiempos distintos. Además, no es un protocolo orientado a conexión dado que no hay handshaking entre las NICs de emisor y receptor.
