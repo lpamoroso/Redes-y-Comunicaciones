@@ -1,0 +1,132 @@
+Capa de aplicacion
+	DNS
+
+Capa de transporte
+	TCP
+	UDP
+
+Capa de red
+	IPv4
+	IPv6
+	DHCP
+	NAT
+		PAT
+
+Capa de enlace
+	ARP
+	MAC
+	Ethernet
+	802.3
+	CSMA/CD
+	ICMP
+	PPP
+
+HTTP
+
+    Enumere dos ventajas y dos desventajas de la conmutación de paquetes frente a la conmutación de mensajes.
+
+        Esto en que categoria entraria?? Se suele preguntar??
+
+    ¿Se puede, vía HTTP, transferir un archivo JPEG? (Justifique las respuestas y haga los comentarios que crea necesarios)
+
+        Yo se que si, pero no podria justificarlo. Tiene que ver con los MIME types o eso es otra cosa??
+
+    archivos binarios http
+
+        Muy parecido a lo anterior.
+
+    YAPA
+
+    Indique dos mecanismos que permiten que una página web que ya ha sido requerida previamente por un navegador, pueda no necesitar volver a ser transmitida desde el servidor web en el cual el mismo reside. Para cada caso indique cómo obtiene el navegador la página nuevamente y si hay alguna particularidad a tener en cuenta en el requerimiento HTTP.
+
+        Web cache y cual otro??
+
+    Mencione 3 comandos/mensajes utilizados para obtener una página HTML. Describa brevemente la utilidad de cada uno mediante un ejemplo.
+
+        GET, POST y HEAD. Tengo que explicar funcionalidad??
+
+FTP
+
+    YAPA
+
+    1. ¿Se puede, vía FTP, transferir un archivo HTML?
+
+        Si, dado que es un protocolo que soporta la carga y descarga de archivos ASCII (entre muchos otros). El formato HTML es ASCII, ppor lo que es posible la transferencia.
+
+    2. Mencione en no más de 6 renglones para que se utiliza este protocolo y sus diferencias con HTTP.
+
+        Esta pregunta se podría resolver con lo expuesto arriba, pero dejo un hiper-resumen por si llega a aparecer este inciso:
+
+        FTP es un protocolo de red para la transferencia de archivos entre sistemas conectados a una red TCP (Transmission Control Protocol), basado en la arquitectura cliente-servidor. El servicio FTP es ofrecido por la capa de aplicación del modelo de capas de red TCP/IP al usuario, utilizando normalmente el puerto de red 20 y el 21. Se distingue de HTTP en que este envía su información de control en banda (FTP utiliza una conexión de control aparte, por lo que trabaja fuera de banda) y que HTTP es stateless (FTP debe mantener el estado de sus usuarios).
+
+    3. Nombre 2 ejemplos de programas que trabajen usando este protocolo.
+
+        Proftpd y Filezilla?
+
+    4. HTTP a diferencia de FTP no sirve para enviar mucha informacion hacia el servidor.
+
+        Se ha comprobado que FTP funciona mejor para enviar mucha más información que HTTP al servidor, dado que FTP fue construído para ser fuerte ante la carga y descarga de archivos grandes y HTTP, solo para descarga.
+
+DNS
+
+    Relacione los conceptos de campos de control y servicio.
+
+        ?
+
+    ¿Que servicio proporciona el DNS para el caso en que un servidor web esté replicado en distintas máquinas cada una con su respectiva dirección IP? Explique como funciona dicho servicio.
+
+        La idea es que con cada consulta, DNS rote la lista de direcciones, por lo que este mecanismo ayuda a prevenir la sobrecarga y asegura que todos los servidores son usados de forma uniforme.
+
+    ¿Pueden existir más de un servidor de nombres para un dominio, cuál tendrá prioridad? Ejemplifique
+
+        Si, puede existir más de uno, pero no hay prioridad ya que DNS lo único que hace es rotar la lista de direcciones existentes.
+
+    ¿Qué diferencias existe entre: mandar un e-mail especificando el nombre del servidor y el dominio o solo el nombre del dominio? ¿Qué consultas se harían al DNS en ambos casos? ¿Se puede mandar un mail sin necesidad de consultar un DNS?
+
+        En el primer caso, DNS va a buscar un servidor de mail específico para enviar el mail y tal servidor ejecutará una consulta DNS aparte para conocer el servidor de mail receptor. En el segundo caso, tomará el servidor de mail con más prioridad para enviar el mail. En cualquier caso, es casi imprescindible utilizar DNS. La única forma de no usarlo es apuntar directamente a las IP de los servidores emisor y receptor para evitar que se hagan esas consultas.
+
+    Indicar las diferencias entre un servidor SMTP principal y uno de backup para un dominio ¿Cómo se diferencian?
+
+        ?
+
+    Muestre mediante un ejemplo la utilizacion de un servidor de mail de backup. Considere el uso de los protocolos SMTP y DNS.
+
+        ?
+
+    ¿Podría un navegador web acceder a Internet usando nombres sin utilizar el servicio de DNS (Justificar brevemente).
+
+        Si, conociendo la IP del servidor a donde desea conectarse.
+
+    Si un host realiza una consulta DNS preguntando por la IP del servidor web www.ejemplo.edu.ar al servidor dns1.ejemplo.edu.ar pero éste no es un servidor autoritativo, qué información (describa registro/s, tipo de registro/s e información contenida en el/los registro/s) debería contener para poder contestar a la consulta en cuestión?
+
+        Para que un servidor pueda contestar de forma autoritativa a una solicitud, debe tener autoridad sobre ella, es decir, poder devolver la IP asociada al nombre dado. A priori, basta un registro A (el decir, el par IP-host) para contestar a la consulta en cuestión.
+
+    Un servidor de DNS que solo realiza cache de consultas (Cache Only),puede considerarse autoritativo en alguna circunstancia?
+
+        No es el servidor autoritativo en sí mismo, solo conoce la IP porque ya antes alguien preguntó por ella.
+
+    Muestre un ejemplo en el cual un servidor raiz recibiría un requerimiento de DNS y cómo este respondería. La respuesta es recursiva o iterativa?
+
+    YAPA DNS
+
+        Si nos conectamos a un servidor de webmail para usar nuestro correo electronico ¿Cuales son todos los protocolos (transporte y aplicacion) que se verian involucrados cuando queremos leer nuestros mensajes?
+
+            Si nos conectamos a un servidor de webmail (por ejemplo, hotmail.com) para usar nuestro correo electronico, el primer paso va a ser entrar en la URL del sitio web que ofrece los servicios, por lo que habremos de efectuar una consulta DNS usando UDP para conocer cual es la IP (registro A) del sitio al que nos queremos conectar. Luego, a través de un HTTP GET usando TCP, accederemos al sitio web. Dado que los protocolos de acceso al E-Mail poseen mecanismos de autenticación, es que el webmail, a priori, nos pedirá que indiquemos nuestras credenciales (usuario y contraseña). Una vez que enviemos nuestros datos al servidor, primero, nuevamente, es necesario conocer la IP del sitio al que se enviará la consulta, por lo que debemos consultar con DNS, usando UDP, esa IP (registro A). Luego, a través de un HTTP POST usando TCP es que el servidor recibirá nuestras credenciales. Con estas, el servidor utilizará alguno de los protocolos existentes para la consulta de E-Mail (o bien IMAP, o bien POP) para consultar el correo del usuario siempre a través de TCP. Para esto es que primero será necesario obtener el servidor de mail al que hay que consultar, esto se obtiene con una consulta DNS usando UDP al registro MX del dominio al que ingresamos. Es así que el último paso es, finalmente, consultar efectivamente con alguno de los protocolos (supongamos IMAP por TCP) y responder la petición HTTP POST por TCP del usuario (esa que habíamos generado al principio con las credenciales) para que el usuario pueda ver sus mails finalmente.
+
+        ¿Cuando se envía un e-mail vía web-mail, que consultas de registros de DNS deberían realizarse? Tener en cuenta todo el proceso desde la conexión HTTP y los puertos. Explicar el significado de cada registro mencionado.
+
+            Voy a suponer que ya se inició sesión (al inicio de sesión lo expliqué más arriba) y solo voy redactar cómo se enviará el E-Mail. El primer paso es redactar el E-Mail per se. Cuando se lo vaya a enviar, lo cierto es que primero tenemos que conocer la IP del servidor a donde enviaremos el mensaje (la IP del servidor receptor), por lo que usamos DNS usando UDP por un puerto mayor a 1024 para efectuar la consulta del registro MX. La respuesta va a ir dirigida al puerto 53 del cliente y esa respuesta será el servidor al que se enviará el mail. Lo que se realiza, finalmente, es encapsular todo en un paquete SMTP al puerto 25 de la IP provista por DNS.
+
+        Si mi servidor de correo tiene el nombre mail.midominio.edu.ar, y mi nombre de usuario es mi usuario, ¿Es posible que cuando alguien me mande un mensaje lo haga escribiendo esto como posible direccion de destinatario miusuario@midominio.edu.ar? justifique su respuesta (y si esto es posible indique claramente cuales son las condiciones: protocolo, servicio que lo permiten, etc).
+
+            Si, efectivamente esto es posible usando los registros CNAME de DNS, pero ha de tenerse en cuenta que primero se deberá configurar el registro pertinente. La idea es agregar un registro CNAME 
+
+        Qué consultas de DNS se deberían hacer par obtener la siguiente información:
+            a) Quién (la dirección IP al cual conectarse) es el servidor de mail para el dominio somedomain.dom.
+                Primero se consulta por el MX del dominio somedomain.dom y luego para la entrada que dio la mayor prioridad (valor más bajo) se consulta por el registro A. Por ejemplo, si el MX retorno somedomain.dom MX 1 mail.somedomain.dom. Se consultara por el registro A de mail.somedomain.dom.
+            b) Quiénes son los servidores de DNS para el dominio somedomain.dom.
+                Se consulta por el NS del dominio somedomain.dom.
+            c) Qué nombre esta asociado con la IP 150.0.0.1.
+                Se consulta por el PTR de 1.0.0.150.in­addr.arpa.
+
+Dejo acá una guía de lo que probablemente tomaran. No pude completar casi nada. Terminé estudiando de las diapos y me fue un cinco. Si alguien quiere continuarlo o usarlo, bienvenido sea.

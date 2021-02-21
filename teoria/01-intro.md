@@ -1,9 +1,7 @@
 # Introducción
 
 1. ¿Qué es una Red?
-
 Es un conjunto de dispositivos interconectados por cable o de forma inalámbrica con el objetivo de compartir recursos, ya sea otros dispositivos, información, servicios, etc. El conjunto de computadoras, software de red, medios y dispositivos de interconexión forma un sistema de comunicación. Ejemplos: red de la facultad, Internet, etc.
-
 2. ¿Cuáles son las partes de un sistema de comunicación?
 
 * **Fuente(Software)**: un programa, como podría ser un navegador web, que se va a querer conectar a algo.
@@ -18,14 +16,12 @@ Es un conjunto de dispositivos interconectados por cable o de forma inalámbrica
 * Señal de Información, materialización del mensaje sobre el medio(Hardware?).
 
 3. ¿Qué es un protocolo?
-
 Es un **conjunto de conductas y normas a conocer, respetar y cumplir** no sólo en el medio oﬁcial ya establecido, sino también en el medio social, laboral, etc. Deﬁne el formato, el orden de los mensajes intercambiados y las acciones que se llevan a cabo en la transmisión y/o recepción de un mensaje u otro evento.  
 Un **protocolo de Red**, de forma análoga, es un conjunto de reglas que especiﬁcan el intercambio de datos u órdenes(mensajes de control) durante la comunicación entre las entidades que forman parte de una red. Permiten la comunicación y, por lo general, ya están implementados y estandarizados en las componentes. Representa un lenguaje que ambas partes deben conocer para poder entenderse.
-
 4. ¿Cuál es el problema de los protocolos?
-
 El problema de los protocolos es que existían muchos y traían consigo muchas incompatibilidades entre ellos dado que eran privativos, complicados, evolucionaban poco y carecían de estándares.
 Dado que en internet no existe un solo protocolo(son muchos protocolos que interactúan entre ellos), fue(y es) necesario un modelo de organización entre los componentes de red. Estos modelos dividen la complejidad en capas(interfaces reusables) que permite:
+
 * Reducir la complejidad en componentes más pequeños.
 * Ocultar la complejidad de las capas de abajo a las de arriba(abstracción).
 * Que las capas de arriba utilicen servicios de las de abajo(algo asi como una API).
@@ -34,10 +30,10 @@ Dado que en internet no existe un solo protocolo(son muchos protocolos que inter
 * Facilitar aprendizaje, diseño y administración de las redes.
 
 Fue así como surgió OSI(Open System Interconnection), un modelo estándar y abierto creado por la ISO con el fin de desarrollar componentes de red también estándares.
-
 5. ¿Qué es OSI?
 
 Es un modelo estándar y abierto basado en DECNET, SNA y TCP/IP. Es el modelo que se usa de referencia para crear otros modelos y consta de siete capas:
+
 * **Aplicación(7)**: servicios de red a los usuarios y a procesos, aplicaciones. Sin esta capa formar redes no tendría mucho sentido. Es el punto fuerte de la red.
 * **Presentación/Representación(6)**: va a definir cuál es el formato que se le da a los datos que se transmitirán a los *hosts*. Si los datos no tienen un formato establecido, la comunicación no se va a poder llevar a cabo.
 * **Sesión(5)**: mantiene el track(estado) de sesiones de la aplicación, es decir, quién se comunica con quién.
@@ -55,16 +51,18 @@ A su vez podemos clasificar las capas en:
 
 Es un modelo abierto que se convirtió en estándar. Viene implementado en todos los dispositivos. Su API es abierta por lo que permite generar nuevos protocolos.  
 Es un modelo de cinco capas:
+
 * Capa de Aplicación (Process/Application).
 * Capa de Transporte o Host-to-Host.
 * Capa de Internet o Internetworking: maneja el direccionamiento ip y el comportamiento.
 * Capa de Enlace(Link Layer).
 * Capa de Física.
-Por simplicidad, algunos autores hablan de 4 capas, agrupando a la Capa de Enlace y Capa física en una sola capa que llaman *capa de acceso a la Red*
 
+Por simplicidad, algunos autores hablan de 4 capas, agrupando a la Capa de Enlace y Capa física en una sola capa que llaman *capa de acceso a la Red*
 7. OSI vs. TCP/IP
 
 ***Similitudes:***
+
 * Se dividen en capas.
 * Tienen capas de aplicación, aunque incluyen servicios distintos.
 * Tienen capas de transporte similares.
@@ -73,6 +71,7 @@ Por simplicidad, algunos autores hablan de 4 capas, agrupando a la Capa de Enlac
 * Es importante conocer ambos modelos.
 
 ***Diferencias:***
+
 * TCP/IP combina las funciones de la capa de presentación y de sesión en la capa de aplicación.
 * TCP/IP combina la capas de enlace de datos y la capa física del modelo OSI en una sola capa.
 * TCP/IP más simple porque tiene menos capas.
@@ -82,14 +81,13 @@ Por simplicidad, algunos autores hablan de 4 capas, agrupando a la Capa de Enlac
 8. ¿Qué es el Protocol Data Unit?
 
 Es una unidad que define cada capa. La idea es que los datos de las capas superiores vayan encapsulándose para que puedan ser transmitidos por la capa física.
-
 9. ¿Cómo se da la comunicación entre capas?
 
 La idea es que cada capa usa el servicio de la de abajo y que cada capa se comunica con la capa del otro extremo. Lo que ocurre es que hay dispositivos en el medio de la comunicación que no van a comprender toda la información, es decir, un router va a entender hasta la capa tres y no va a entender si estamos hablando de http o tcp o dns. No va a brindar servicios de capas superiores.
-
 10. ¿Cómo se clasifican las redes?
 
 Existen diferentes clasiﬁcaciones de acuerdo a diferentes aspectos. Se pueden mencionar:
+
 * Por cobertura.
 * Por acceso.
 * Por topología física.
@@ -97,6 +95,7 @@ Existen diferentes clasiﬁcaciones de acuerdo a diferentes aspectos. Se pueden 
 * Etc.
 
 Según cobertura:
+
 * **LAN**: (Local Area Network). Red de cobertura local. Ethernet, Wi-Fi.
 * **MAN**: (Metropolitan Area Network). red de cobertura metropolitana, dentro de una ciudad. MetroEthernet, MPLS, Wi-Max.
 * **WAN**: (Wide Area Network). red de cobertura de área amplia. Geográﬁcamente distribuida. PPP, Frame-Relay, MPLS, HDLC, SONET/SDH.
@@ -104,11 +103,13 @@ Según cobertura:
 * **PAN**: red de cobertura personal. Red con alcance de escasos metros para conectar dispositivos cercanos a un individuo. Bluetooth, IrDA, USB.
 
 Según acceso:
+
 * **Internet**: es una red pública global que utiliza la tecnología TCP/IP.
 * **Intranet**: es una red privada que utiliza la tecnología de Internet.
 * **Extranet**: es una red privada virtualizada sobre enlaces WAN: Internet. Es una intranet con acceso de usuarios remotos. VPN (Virtual Private Network). IPSec, PPTP, SSL, OpenVPN. Una intranet mapeada sobre una red pública como Internet.
 
 Según topología física:
+
 * **Redes de Conmutación de Circuitos**: para establecer comunicación en este tipo de redes, se debe efectuar una llamada y, cuando se establece la conexión, los usuarios disponen de un enlace directo a través de los distintos segmentos de la red.
 * **Redes de Conmutación de Tramas/Paquetes**: en este caso, la información/datos a transmitir es previamente ensamblada en paquetes. Cada paquete es entonces transmitido individualmente y éste puede seguir diferentes rutas hacia su destino. Una vez que los paquetes hayan llegado a su destino, éstos son otra vez reensamblados. La principal diferencia está en que la conmutación por circuitos es un tipo de comunicación que establece o crea un canal dedicado(o circuito) durante la duración de una sesión. Este sistema es ideal para comunicaciones que requieren que los datos/información sean transmitidos en tiempo real. La conmutación de paquetes, por su parte, es más eficiente y robusto para datos que pueden ser enviados con retardo en la transmisión(no en tiempo real), tales como el correo electrónico, páginas web, archivos, etc. Hay dos tipos:
   + **Servicios Orientados a Conexión**: acá se establece el camino que va a seguir el paquete. Ej: circuitos virtuales.
@@ -121,6 +122,7 @@ Es una red de redes de computadoras, descentralizada, pública, que ejecutan el 
 11. ¿Cómo se estructura internet?
 
 Es una estructura jerárquica, en forma de niveles:
+
 * **Capa de acceso**: contempla cómo se entra a internet.
 * **Capa de núcleo**: consta de dispositivos de red de alta velocidad fundamentales para la interconectividad entre los aparatos de la capa de acceso.
 

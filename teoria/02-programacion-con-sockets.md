@@ -28,7 +28,7 @@ En principio, es necesario definirle ciertas primitivas:
 * Crea un socket TCP local al cliente.
 * Especifica la dirección IP y el puerto del servidor.
 * Cuando el cliente crea el socket, establece la conexión TCP con el servidor.
-* Cuando es contactado por el cliente, el servidor TCP crea un nuevo socket a través del cual el proceso servidor se comunicará con el cliente 
+* Cuando es contactado por el cliente, el servidor TCP crea un nuevo socket a través del cual el proceso servidor se comunicará con el cliente
   + Esto permitirá que un servidor dialogue con muchos clientes.
   + También, cada cliente será atendido en un número de puerto distinto.
 
